@@ -33,7 +33,6 @@
 		08169C0D1BD9EFED00BD740D /* elf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169A5C1BD9EFED00BD740D /* elf.cpp */; };
 		08169C0E1BD9EFED00BD740D /* elf32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169A5E1BD9EFED00BD740D /* elf32.cpp */; };
 		08169C0F1BD9EFED00BD740D /* elf64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169A601BD9EFED00BD740D /* elf64.cpp */; };
-		08169C7A1BD9EFEE00BD740D /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 08169AF01BD9EFED00BD740D /* Makefile */; };
 		08169C801BD9EFEE00BD740D /* x86_emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B001BD9EFED00BD740D /* x86_emitter.cpp */; };
 		08169C811BD9EFEE00BD740D /* aica.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B081BD9EFED00BD740D /* aica.cpp */; };
 		08169C821BD9EFEE00BD740D /* aica_if.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B0A1BD9EFED00BD740D /* aica_if.cpp */; };
@@ -236,6 +235,7 @@
 		552EA87D25E4726700879856 /* zip_algorithm_bzip2.c in Sources */ = {isa = PBXBuildFile; fileRef = 552EA87B25E4726700879856 /* zip_algorithm_bzip2.c */; };
 		552EA8A925E47C3700879856 /* libzip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EA77025E46DEA00879856 /* libzip.a */; };
 		552EA8B725E47D4600879856 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EA8B625E47D4600879856 /* libbz2.tbd */; };
+		552EA8D725E47EA600879856 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EA8D625E47EA600879856 /* libz.tbd */; };
 		8C74454E1786DB1E0008BE6A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAFC18C1785C48600647A96 /* OpenGL.framework */; };
 		8CAFC1231785B6C400647A96 /* OpenEmuBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAFC1221785B6C400647A96 /* OpenEmuBase.framework */; };
 		8CAFC1261785B6F700647A96 /* FlycastGameCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8CAFC1251785B6F700647A96 /* FlycastGameCore.mm */; };
@@ -338,17 +338,6 @@
 		EE51F4BE220A3A0F00BCC098 /* ZipArchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F4B8220A3A0F00BCC098 /* ZipArchive.cpp */; };
 		EE51F4BF220A3A0F00BCC098 /* 7zArchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F4B9220A3A0F00BCC098 /* 7zArchive.cpp */; };
 		EE51F4C0220A3A0F00BCC098 /* archive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F4BC220A3A0F00BCC098 /* archive.cpp */; };
-		EE51F4C5220A3DFE00BCC098 /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169ADF1BD9EFED00BD740D /* crc32.c */; };
-		EE51F4C6220A3E0200BCC098 /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169ADD1BD9EFED00BD740D /* adler32.c */; };
-		EE51F4C7220A3E0500BCC098 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169ADE1BD9EFED00BD740D /* compress.c */; };
-		EE51F4C8220A3E2F00BCC098 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AF61BD9EFED00BD740D /* zutil.c */; };
-		EE51F4C9220A3E3500BCC098 /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AEC1BD9EFED00BD740D /* inflate.c */; };
-		EE51F4CA220A3E3B00BCC098 /* infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AE81BD9EFED00BD740D /* infback.c */; };
-		EE51F4CB220A3E4400BCC098 /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AE91BD9EFED00BD740D /* inffast.c */; };
-		EE51F4CC220A3E4400BCC098 /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AEE1BD9EFED00BD740D /* inftrees.c */; };
-		EE51F4CD220A3E4600BCC098 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AF11BD9EFED00BD740D /* trees.c */; };
-		EE51F4CE220A3E4A00BCC098 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AF31BD9EFED00BD740D /* uncompr.c */; };
-		EE51F4CF220A3E4E00BCC098 /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AE11BD9EFED00BD740D /* deflate.c */; };
 		EE81B9EF223ABCD9009C2D4E /* gamepad_device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE81B9E9223ABCD8009C2D4E /* gamepad_device.cpp */; };
 		EE81B9F0223ABCD9009C2D4E /* mapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE81B9EA223ABCD8009C2D4E /* mapping.cpp */; };
 		EE81B9F1223ABCD9009C2D4E /* keyboard_device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE81B9EC223ABCD8009C2D4E /* keyboard_device.cpp */; };
@@ -411,10 +400,6 @@
 		EEDDD8D9234D20AE00265FEB /* vmem32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8D8234D20AE00265FEB /* vmem32.cpp */; };
 		EEDDD8DD234D20D600265FEB /* ssa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8DC234D20D600265FEB /* ssa.cpp */; };
 		EEDDD8E0234D20E900265FEB /* fastmmu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8DF234D20E900265FEB /* fastmmu.cpp */; };
-		EEDDD8E5234D218400265FEB /* gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8E1234D218400265FEB /* gzread.c */; };
-		EEDDD8E6234D218400265FEB /* gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8E2234D218400265FEB /* gzlib.c */; };
-		EEDDD8E7234D218400265FEB /* gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8E3234D218400265FEB /* gzclose.c */; };
-		EEDDD8E8234D218400265FEB /* gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8E4234D218400265FEB /* gzwrite.c */; };
 		EEDDD8F4234D266400265FEB /* ConsoleListenerNix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8EB234D266300265FEB /* ConsoleListenerNix.cpp */; };
 		EEDDD8F7234D266400265FEB /* LogManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEDDD8F2234D266300265FEB /* LogManager.cpp */; };
 		EEDDD8F8234D2A2C00265FEB /* nullDC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE08144C21913448007FD1AB /* nullDC.cpp */; };
@@ -516,29 +501,6 @@
 		08169AD31BD9EFED00BD740D /* zip_unchange_archive.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_unchange_archive.c; sourceTree = "<group>"; };
 		08169AD41BD9EFED00BD740D /* zip_unchange_data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_unchange_data.c; sourceTree = "<group>"; };
 		08169AD51BD9EFED00BD740D /* zipint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zipint.h; sourceTree = "<group>"; };
-		08169ADD1BD9EFED00BD740D /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
-		08169ADE1BD9EFED00BD740D /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
-		08169ADF1BD9EFED00BD740D /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc32.c; sourceTree = "<group>"; };
-		08169AE01BD9EFED00BD740D /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
-		08169AE11BD9EFED00BD740D /* deflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = deflate.c; sourceTree = "<group>"; };
-		08169AE21BD9EFED00BD740D /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deflate.h; sourceTree = "<group>"; };
-		08169AE41BD9EFED00BD740D /* gzguts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzguts.h; sourceTree = "<group>"; };
-		08169AE81BD9EFED00BD740D /* infback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = infback.c; sourceTree = "<group>"; };
-		08169AE91BD9EFED00BD740D /* inffast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inffast.c; sourceTree = "<group>"; };
-		08169AEA1BD9EFED00BD740D /* inffast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffast.h; sourceTree = "<group>"; };
-		08169AEB1BD9EFED00BD740D /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffixed.h; sourceTree = "<group>"; };
-		08169AEC1BD9EFED00BD740D /* inflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inflate.c; sourceTree = "<group>"; };
-		08169AED1BD9EFED00BD740D /* inflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inflate.h; sourceTree = "<group>"; };
-		08169AEE1BD9EFED00BD740D /* inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inftrees.c; sourceTree = "<group>"; };
-		08169AEF1BD9EFED00BD740D /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inftrees.h; sourceTree = "<group>"; };
-		08169AF01BD9EFED00BD740D /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		08169AF11BD9EFED00BD740D /* trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trees.c; sourceTree = "<group>"; };
-		08169AF21BD9EFED00BD740D /* trees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trees.h; sourceTree = "<group>"; };
-		08169AF31BD9EFED00BD740D /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uncompr.c; sourceTree = "<group>"; };
-		08169AF41BD9EFED00BD740D /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.h; sourceTree = "<group>"; };
-		08169AF51BD9EFED00BD740D /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
-		08169AF61BD9EFED00BD740D /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
-		08169AF71BD9EFED00BD740D /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		08169AFB1BD9EFED00BD740D /* generated_class_names.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generated_class_names.h; sourceTree = "<group>"; };
 		08169AFC1BD9EFED00BD740D /* generated_class_names_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generated_class_names_string.h; sourceTree = "<group>"; };
 		08169AFD1BD9EFED00BD740D /* generated_descriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generated_descriptors.h; sourceTree = "<group>"; };
@@ -810,6 +772,7 @@
 		552EA87C25E4726700879856 /* zip_algorithm_xz.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_algorithm_xz.c; sourceTree = "<group>"; };
 		552EA89F25E47A8600879856 /* zipconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zipconf.h; sourceTree = "<group>"; };
 		552EA8B625E47D4600879856 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		552EA8D625E47EA600879856 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		8CAFA7B41785AF4200647A96 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8CAFA7B71785AF4200647A96 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8CAFA7B81785AF4200647A96 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1639,10 +1602,6 @@
 		EEDDD8DC234D20D600265FEB /* ssa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ssa.cpp; sourceTree = "<group>"; };
 		EEDDD8DE234D20E800265FEB /* wince.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wince.h; sourceTree = "<group>"; };
 		EEDDD8DF234D20E900265FEB /* fastmmu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fastmmu.cpp; sourceTree = "<group>"; };
-		EEDDD8E1234D218400265FEB /* gzread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzread.c; sourceTree = "<group>"; };
-		EEDDD8E2234D218400265FEB /* gzlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzlib.c; sourceTree = "<group>"; };
-		EEDDD8E3234D218400265FEB /* gzclose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzclose.c; sourceTree = "<group>"; };
-		EEDDD8E4234D218400265FEB /* gzwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzwrite.c; sourceTree = "<group>"; };
 		EEDDD8EB234D266300265FEB /* ConsoleListenerNix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleListenerNix.cpp; sourceTree = "<group>"; };
 		EEDDD8EC234D266300265FEB /* BitSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitSet.h; sourceTree = "<group>"; };
 		EEDDD8EF234D266300265FEB /* ConsoleListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleListener.h; sourceTree = "<group>"; };
@@ -1664,6 +1623,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552EA8D725E47EA600879856 /* libz.tbd in Frameworks */,
 				552EA8B725E47D4600879856 /* libbz2.tbd in Frameworks */,
 				552EA8A925E47C3700879856 /* libzip.a in Frameworks */,
 				EE0815272191CA58007FD1AB /* AudioUnit.framework in Frameworks */,
@@ -1742,7 +1702,6 @@
 				08169A4F1BD9EFED00BD740D /* crypto */,
 				08169A5A1BD9EFED00BD740D /* libelf */,
 				08169A9C1BD9EFED00BD740D /* libzip */,
-				08169ADC1BD9EFED00BD740D /* zlib */,
 			);
 			path = deps;
 			sourceTree = "<group>";
@@ -1948,40 +1907,6 @@
 			);
 			name = libzip;
 			path = libzip/lib;
-			sourceTree = "<group>";
-		};
-		08169ADC1BD9EFED00BD740D /* zlib */ = {
-			isa = PBXGroup;
-			children = (
-				EEDDD8E3234D218400265FEB /* gzclose.c */,
-				EEDDD8E2234D218400265FEB /* gzlib.c */,
-				EEDDD8E1234D218400265FEB /* gzread.c */,
-				EEDDD8E4234D218400265FEB /* gzwrite.c */,
-				08169ADD1BD9EFED00BD740D /* adler32.c */,
-				08169ADE1BD9EFED00BD740D /* compress.c */,
-				08169ADF1BD9EFED00BD740D /* crc32.c */,
-				08169AE01BD9EFED00BD740D /* crc32.h */,
-				08169AE11BD9EFED00BD740D /* deflate.c */,
-				08169AE21BD9EFED00BD740D /* deflate.h */,
-				08169AE41BD9EFED00BD740D /* gzguts.h */,
-				08169AE81BD9EFED00BD740D /* infback.c */,
-				08169AE91BD9EFED00BD740D /* inffast.c */,
-				08169AEA1BD9EFED00BD740D /* inffast.h */,
-				08169AEB1BD9EFED00BD740D /* inffixed.h */,
-				08169AEC1BD9EFED00BD740D /* inflate.c */,
-				08169AED1BD9EFED00BD740D /* inflate.h */,
-				08169AEE1BD9EFED00BD740D /* inftrees.c */,
-				08169AEF1BD9EFED00BD740D /* inftrees.h */,
-				08169AF01BD9EFED00BD740D /* Makefile */,
-				08169AF11BD9EFED00BD740D /* trees.c */,
-				08169AF21BD9EFED00BD740D /* trees.h */,
-				08169AF31BD9EFED00BD740D /* uncompr.c */,
-				08169AF41BD9EFED00BD740D /* zconf.h */,
-				08169AF51BD9EFED00BD740D /* zlib.h */,
-				08169AF61BD9EFED00BD740D /* zutil.c */,
-				08169AF71BD9EFED00BD740D /* zutil.h */,
-			);
-			path = zlib;
 			sourceTree = "<group>";
 		};
 		08169AF81BD9EFED00BD740D /* emitter */ = {
@@ -2474,6 +2399,7 @@
 		8CAFA79C1785AE2A00647A96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				552EA8D625E47EA600879856 /* libz.tbd */,
 				552EA8B625E47D4600879856 /* libbz2.tbd */,
 				EE0815262191CA58007FD1AB /* AudioUnit.framework */,
 				8CAFC1221785B6C400647A96 /* OpenEmuBase.framework */,
@@ -3673,7 +3599,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CAFC11E1785B63900647A96 /* Build configuration list for PBXNativeTarget "Flycast" */;
 			buildPhases = (
-				EE1F875324B0F00700B87DDF /* ShellScript */,
 				8CAFC10B1785B63900647A96 /* Sources */,
 				8CAFC10C1785B63900647A96 /* Frameworks */,
 			);
@@ -3734,23 +3659,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "mkdir -p \"$USER_LIBRARY_DIR/Application Support/OpenEmu/Cores\"\nrm -rf \"$USER_LIBRARY_DIR/Application Support/OpenEmu/Cores/$PROJECT_NAME.oecoreplugin\"\ncp -rf \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.oecoreplugin\"{,.dSYM} \"$USER_LIBRARY_DIR/Application Support/OpenEmu/Cores/\"\n";
-		};
-		EE1F875324B0F00700B87DDF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd flycast/core/deps/zlib/\n./configure\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3904,7 +3812,6 @@
 				08169C011BD9EFED00BD740D /* cfg.cpp in Sources */,
 				EE1FB87F2203769C0083411F /* bitmath.c in Sources */,
 				08169CA51BD9EFEE00BD740D /* sh4_interpreter.cpp in Sources */,
-				EE51F4C5220A3DFE00BCC098 /* crc32.c in Sources */,
 				08169CAE1BD9EFEE00BD740D /* serial.cpp in Sources */,
 				08169CAC1BD9EFEE00BD740D /* mmu.cpp in Sources */,
 				08169CAF1BD9EFEE00BD740D /* tmu.cpp in Sources */,
@@ -3919,8 +3826,6 @@
 				08169C0E1BD9EFED00BD740D /* elf32.cpp in Sources */,
 				EE51F4B6220A373400BCC098 /* naomi_cart.cpp in Sources */,
 				EEC2B85B23B82209006E959C /* SpvPostProcess.cpp in Sources */,
-				EE51F4C9220A3E3500BCC098 /* inflate.c in Sources */,
-				EE51F4CD220A3E4600BCC098 /* trees.c in Sources */,
 				08169C971BD9EFEE00BD740D /* drkPvr.cpp in Sources */,
 				EE0815122191393D007FD1AB /* pico_fragments.c in Sources */,
 				EE0815042191393D007FD1AB /* pico_socket_tcp.c in Sources */,
@@ -3934,20 +3839,16 @@
 				08169CD91BD9EFEE00BD740D /* descrambl.cpp in Sources */,
 				08169CCA1BD9EFEE00BD740D /* audiobackend_directsound.cpp in Sources */,
 				EE51F4C0220A3A0F00BCC098 /* archive.cpp in Sources */,
-				EE51F4CF220A3E4E00BCC098 /* deflate.c in Sources */,
 				EE10AF1C21923B17002814A4 /* serialize.cpp in Sources */,
 				EEC2B8B223B82993006E959C /* switcher.cpp in Sources */,
 				EE1FB8282203671D0083411F /* 7zStream.c in Sources */,
 				EEC2B87323B82209006E959C /* IntermTraverse.cpp in Sources */,
 				EEDDD8D1234D1F7900265FEB /* cheats.cpp in Sources */,
 				EEC2B88323B82209006E959C /* PpAtom.cpp in Sources */,
-				08169C7A1BD9EFEE00BD740D /* Makefile in Sources */,
 				EE0814FB2191393D007FD1AB /* pico_socket_multicast.c in Sources */,
 				08169CB51BD9EFEE00BD740D /* sh4_opcode_list.cpp in Sources */,
-				EE51F4CE220A3E4A00BCC098 /* uncompr.c in Sources */,
 				08169C9E1BD9EFEE00BD740D /* ta_ctx.cpp in Sources */,
 				08169CDE1BD9EFEE00BD740D /* gldraw.cpp in Sources */,
-				EE51F4C7220A3E0500BCC098 /* compress.c in Sources */,
 				EE51F4B3220A373400BCC098 /* m1cartridge.cpp in Sources */,
 				EE0D717C22905BE300D721E9 /* gui_util.cpp in Sources */,
 				EE51F4B2220A373400BCC098 /* decrypt.cpp in Sources */,
@@ -4013,7 +3914,6 @@
 				EE1FB8792203769C0083411F /* memory.c in Sources */,
 				EE10AF1221923A19002814A4 /* Alloc.c in Sources */,
 				08169C841BD9EFEE00BD740D /* dsp.cpp in Sources */,
-				EE51F4CA220A3E3B00BCC098 /* infback.c in Sources */,
 				EE08151E21913C7E007FD1AB /* rec_x64.cpp in Sources */,
 				08169CB11BD9EFEE00BD740D /* sh4_core_regs.cpp in Sources */,
 				08169CCD1BD9EFEE00BD740D /* audiostream.cpp in Sources */,
@@ -4061,7 +3961,6 @@
 				EE08B8B5220DC7F900BF2CAA /* imgui_draw.cpp in Sources */,
 				08169C8D1BD9EFEE00BD740D /* sb.cpp in Sources */,
 				08169CE01BD9EFEE00BD740D /* gltex.cpp in Sources */,
-				EEDDD8E8234D218400265FEB /* gzwrite.c in Sources */,
 				EEC2B87423B82209006E959C /* intermOut.cpp in Sources */,
 				08169C981BD9EFEE00BD740D /* pvr_mem.cpp in Sources */,
 				EE1FB8862203769C0083411F /* md5.c in Sources */,
@@ -4074,7 +3973,6 @@
 				EEC2B87023B82209006E959C /* glslang_tab.cpp in Sources */,
 				EEC2B87823B82209006E959C /* InfoSink.cpp in Sources */,
 				08169C9A1BD9EFEE00BD740D /* pvr_sb_regs.cpp in Sources */,
-				EE51F4C6220A3E0200BCC098 /* adler32.c in Sources */,
 				08169CA71BD9EFEE00BD740D /* bsc.cpp in Sources */,
 				EEDDD8D9234D20AE00265FEB /* vmem32.cpp in Sources */,
 				EE10AEDD2192331A002814A4 /* bitstream.c in Sources */,
@@ -4089,21 +3987,16 @@
 				EE0815012191393D007FD1AB /* pico_ethernet.c in Sources */,
 				EE08B8A2220DC7BC00BF2CAA /* gui.cpp in Sources */,
 				EEC2B87623B82209006E959C /* PoolAlloc.cpp in Sources */,
-				EE51F4C8220A3E2F00BCC098 /* zutil.c in Sources */,
 				EEC2B87723B82209006E959C /* ShaderLang.cpp in Sources */,
-				EEDDD8E7234D218400265FEB /* gzclose.c in Sources */,
 				08169C091BD9EFED00BD740D /* sha1.cpp in Sources */,
 				EEC2B86C23B82209006E959C /* propagateNoContraction.cpp in Sources */,
-				EEDDD8E5234D218400265FEB /* gzread.c in Sources */,
 				EE0814682191390D007FD1AB /* modem.cpp in Sources */,
 				08169C9F1BD9EFEE00BD740D /* ta_vtx.cpp in Sources */,
-				EE51F4CC220A3E4400BCC098 /* inftrees.c in Sources */,
 				EE0815032191393D007FD1AB /* pico_ipv4.c in Sources */,
 				EE10AF0F21923A19002814A4 /* Sort.c in Sources */,
 				EE0814FC2191393D007FD1AB /* pico_stack.c in Sources */,
 				08169CB31BD9EFEE00BD740D /* sh4_mem.cpp in Sources */,
 				EED2556324AFB6F0005E8542 /* naomi_network.cpp in Sources */,
-				EE51F4CB220A3E4400BCC098 /* inffast.c in Sources */,
 				08169C0D1BD9EFED00BD740D /* elf.cpp in Sources */,
 				EE1FB82C2203671D0083411F /* 7zFile.c in Sources */,
 				08169C851BD9EFEE00BD740D /* sgc_if.cpp in Sources */,
@@ -4119,7 +4012,6 @@
 				08169CAA1BD9EFEE00BD740D /* dmac.cpp in Sources */,
 				EE0815052191393D007FD1AB /* pico_dns_client.c in Sources */,
 				EE1FB8262203671D0083411F /* 7zBuf.c in Sources */,
-				EEDDD8E6234D218400265FEB /* gzlib.c in Sources */,
 				EEC2B8B323B829F0006E959C /* gl_context.cpp in Sources */,
 				EEC2B87B23B82209006E959C /* SymbolTable.cpp in Sources */,
 				EEDDD8D0234D1F7900265FEB /* dispframe.cpp in Sources */,
@@ -4395,7 +4287,6 @@
 					"\"$(SRCROOT)/flycast/core/deps/glm\"",
 					"\"$(SRCROOT)/Compatibility/libzip\"",
 					"\"$(SRCROOT)/flycast/core/deps/libzip/lib\"",
-					"\"$(SRCROOT)/flycast/core/deps/zlib\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "\"$(USER_LIBRARY_DIR)/Application Support/OpenEmu/Cores\"";
@@ -4468,7 +4359,6 @@
 					"\"$(SRCROOT)/flycast/core/deps/glm\"",
 					"\"$(SRCROOT)/Compatibility/libzip\"",
 					"\"$(SRCROOT)/flycast/core/deps/libzip/lib\"",
-					"\"$(SRCROOT)/flycast/core/deps/zlib\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "\"$(USER_LIBRARY_DIR)/Application Support/OpenEmu/Cores\"";
