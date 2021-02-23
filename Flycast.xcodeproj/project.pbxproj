@@ -235,6 +235,7 @@
 		552EA87725E4723700879856 /* zip_buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 552EA87625E4723700879856 /* zip_buffer.c */; };
 		552EA87D25E4726700879856 /* zip_algorithm_bzip2.c in Sources */ = {isa = PBXBuildFile; fileRef = 552EA87B25E4726700879856 /* zip_algorithm_bzip2.c */; };
 		552EA8A925E47C3700879856 /* libzip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EA77025E46DEA00879856 /* libzip.a */; };
+		552EA8B725E47D4600879856 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EA8B625E47D4600879856 /* libbz2.tbd */; };
 		8C74454E1786DB1E0008BE6A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAFC18C1785C48600647A96 /* OpenGL.framework */; };
 		8CAFC1231785B6C400647A96 /* OpenEmuBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAFC1221785B6C400647A96 /* OpenEmuBase.framework */; };
 		8CAFC1261785B6F700647A96 /* FlycastGameCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8CAFC1251785B6F700647A96 /* FlycastGameCore.mm */; };
@@ -808,6 +809,7 @@
 		552EA87B25E4726700879856 /* zip_algorithm_bzip2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_algorithm_bzip2.c; sourceTree = "<group>"; };
 		552EA87C25E4726700879856 /* zip_algorithm_xz.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_algorithm_xz.c; sourceTree = "<group>"; };
 		552EA89F25E47A8600879856 /* zipconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zipconf.h; sourceTree = "<group>"; };
+		552EA8B625E47D4600879856 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		8CAFA7B41785AF4200647A96 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8CAFA7B71785AF4200647A96 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8CAFA7B81785AF4200647A96 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -938,7 +940,6 @@
 		EE08151521913968007FD1AB /* dsp_interp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dsp_interp.cpp; sourceTree = "<group>"; };
 		EE08151D21913C7D007FD1AB /* rec_x64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rec_x64.cpp; sourceTree = "<group>"; };
 		EE0815222191C8E0007FD1AB /* audiobackend_coreaudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audiobackend_coreaudio.cpp; sourceTree = "<group>"; };
-		EE0815242191C98B007FD1AB /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
 		EE0815262191CA58007FD1AB /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		EE08153121923210007FD1AB /* dns.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dns.cpp; sourceTree = "<group>"; };
 		EE08153221923210007FD1AB /* net_platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = net_platform.h; sourceTree = "<group>"; };
@@ -1663,6 +1664,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552EA8B725E47D4600879856 /* libbz2.tbd in Frameworks */,
 				552EA8A925E47C3700879856 /* libzip.a in Frameworks */,
 				EE0815272191CA58007FD1AB /* AudioUnit.framework in Frameworks */,
 				8C74454E1786DB1E0008BE6A /* OpenGL.framework in Frameworks */,
@@ -2455,9 +2457,8 @@
 				EE08144921913448007FD1AB /* Compatibility */,
 				8CAFC10A1785B60F00647A96 /* Classes */,
 				8CAFC1181785B63900647A96 /* Supporting Files */,
-				8CAFA79C1785AE2A00647A96 /* Frameworks and Libraries */,
+				8CAFA79C1785AE2A00647A96 /* Frameworks */,
 				8CAFA79B1785AE2A00647A96 /* Products */,
-				EE0815252191CA58007FD1AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2470,10 +2471,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8CAFA79C1785AE2A00647A96 /* Frameworks and Libraries */ = {
+		8CAFA79C1785AE2A00647A96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EE0815242191C98B007FD1AB /* AudioUnit.framework */,
+				552EA8B625E47D4600879856 /* libbz2.tbd */,
+				EE0815262191CA58007FD1AB /* AudioUnit.framework */,
 				8CAFC1221785B6C400647A96 /* OpenEmuBase.framework */,
 				8CAFA7B71785AF4200647A96 /* AppKit.framework */,
 				8CAFA7B81785AF4200647A96 /* CoreData.framework */,
@@ -2481,7 +2483,7 @@
 				8CAFA7B41785AF4200647A96 /* Cocoa.framework */,
 				8CAFC18C1785C48600647A96 /* OpenGL.framework */,
 			);
-			name = "Frameworks and Libraries";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8CAFC10A1785B60F00647A96 /* Classes */ = {
@@ -2703,14 +2705,6 @@
 				EE08151D21913C7D007FD1AB /* rec_x64.cpp */,
 			);
 			path = "rec-x64";
-			sourceTree = "<group>";
-		};
-		EE0815252191CA58007FD1AB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EE0815262191CA58007FD1AB /* AudioUnit.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EE08B8A3220DC7F800BF2CAA /* imgui */ = {
