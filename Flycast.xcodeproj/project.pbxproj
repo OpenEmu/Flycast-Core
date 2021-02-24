@@ -79,7 +79,6 @@
 		08169C6A1BD9EFEE00BD740D /* zip_unchange_all.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AD21BD9EFED00BD740D /* zip_unchange_all.c */; };
 		08169C6B1BD9EFEE00BD740D /* zip_unchange_archive.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AD31BD9EFED00BD740D /* zip_unchange_archive.c */; };
 		08169C6C1BD9EFEE00BD740D /* zip_unchange_data.c in Sources */ = {isa = PBXBuildFile; fileRef = 08169AD41BD9EFED00BD740D /* zip_unchange_data.c */; };
-		08169C7A1BD9EFEE00BD740D /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 08169AF01BD9EFED00BD740D /* Makefile */; };
 		08169C811BD9EFEE00BD740D /* aica.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B081BD9EFED00BD740D /* aica.cpp */; };
 		08169C821BD9EFEE00BD740D /* aica_if.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B0A1BD9EFED00BD740D /* aica_if.cpp */; };
 		08169C831BD9EFEE00BD740D /* aica_mem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B0C1BD9EFED00BD740D /* aica_mem.cpp */; };
@@ -141,7 +140,6 @@
 		08169CCC1BD9EFEE00BD740D /* audiobackend_pulseaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BC71BD9EFED00BD740D /* audiobackend_pulseaudio.cpp */; };
 		08169CCD1BD9EFEE00BD740D /* audiostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BC91BD9EFED00BD740D /* audiostream.cpp */; };
 		08169CCF1BD9EFEE00BD740D /* profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BCE1BD9EFED00BD740D /* profiler.cpp */; };
-		08169CD01BD9EFEE00BD740D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 08169BD01BD9EFED00BD740D /* README.md */; };
 		08169CD31BD9EFEE00BD740D /* rec_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BD51BD9EFED00BD740D /* rec_cpp.cpp */; };
 		08169CD91BD9EFEE00BD740D /* descrambl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BDF1BD9EFED00BD740D /* descrambl.cpp */; };
 		08169CDA1BD9EFEE00BD740D /* gdrom_hle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BE11BD9EFED00BD740D /* gdrom_hle.cpp */; };
@@ -272,7 +270,6 @@
 		5FEEDBA025E470CA000ABF02 /* dhm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDB4E25E470CA000ABF02 /* dhm.c */; };
 		5FEEDBA125E470CA000ABF02 /* ssl_cache.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDB4F25E470CA000ABF02 /* ssl_cache.c */; };
 		5FEEDBA225E470CA000ABF02 /* ssl_ciphersuites.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDB5025E470CA000ABF02 /* ssl_ciphersuites.c */; };
-		5FEEDBA325E470CA000ABF02 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDB5125E470CA000ABF02 /* Makefile */; };
 		5FEEDBA425E470CA000ABF02 /* hmac_drbg.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDB5225E470CA000ABF02 /* hmac_drbg.c */; };
 		5FEEDBA525E470CA000ABF02 /* rsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDB5325E470CA000ABF02 /* rsa.c */; };
 		5FEEDBA625E470CA000ABF02 /* ssl_ticket.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDB5425E470CA000ABF02 /* ssl_ticket.c */; };
@@ -4478,7 +4475,6 @@
 				08169C0E1BD9EFED00BD740D /* elf32.cpp in Sources */,
 				08169C661BD9EFEE00BD740D /* zip_stat_index.c in Sources */,
 				5FEED8B625E43B27000ABF02 /* zip_discard.c in Sources */,
-				5FEEDBA325E470CA000ABF02 /* Makefile in Sources */,
 				EE51F4B6220A373400BCC098 /* naomi_cart.cpp in Sources */,
 				EEC2B85B23B82209006E959C /* SpvPostProcess.cpp in Sources */,
 				EE51F4C9220A3E3500BCC098 /* inflate.c in Sources */,
@@ -4531,7 +4527,6 @@
 				5FEED82F25E432F4000ABF02 /* igd_desc_parse.c in Sources */,
 				EEC2B88323B82209006E959C /* PpAtom.cpp in Sources */,
 				5FEEDBC725E470CA000ABF02 /* ecp.c in Sources */,
-				08169C7A1BD9EFEE00BD740D /* Makefile in Sources */,
 				08169C5B1BD9EFEE00BD740D /* zip_set_archive_comment.c in Sources */,
 				5FEEDBCF25E470CA000ABF02 /* timing.c in Sources */,
 				5FEED8B125E43B27000ABF02 /* zip_source_error.c in Sources */,
@@ -4692,7 +4687,6 @@
 				08169C591BD9EFEE00BD740D /* zip_rename.c in Sources */,
 				08169C631BD9EFEE00BD740D /* zip_source_function.c in Sources */,
 				5FEEDBBD25E470CA000ABF02 /* pem.c in Sources */,
-				08169CD01BD9EFEE00BD740D /* README.md in Sources */,
 				08169C921BD9EFEE00BD740D /* maple_helper.cpp in Sources */,
 				08169CBC1BD9EFEE00BD740D /* ImgReader.cpp in Sources */,
 				EEC2B88123B82209006E959C /* linkValidate.cpp in Sources */,
