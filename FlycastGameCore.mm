@@ -119,7 +119,7 @@ extern void dc_start_game(const char *path);
 extern void rend_init_renderer();
 extern int screen_width,screen_height;
 extern bool rend_framePending();
-extern bool rend_single_frame();
+extern bool rend_single_frame(const bool& enabled);
 
 extern void dc_savestate();
 extern void dc_loadstate();
@@ -245,7 +245,7 @@ volatile bool has_init = false;
         else
            [self.renderDelegate presentationFramebuffer];
                    
-        rend_single_frame();
+        rend_single_frame(true);
         
         calcFPS();
     }
@@ -556,6 +556,19 @@ void handle_key(int dckey, int state, int player)
         default:
             break;
     }
+}
+
+
+std::string os_Locale(){
+    return [[[NSLocale preferredLanguages] objectAtIndex:0] UTF8String];
+}
+
+std::string os_PrecomposedString(std::string string){
+    return [[[NSString stringWithUTF8String:string.c_str()] precomposedStringWithCanonicalMapping] UTF8String];
+}
+
+void UpdateInputState() {
+
 }
 
 @end
