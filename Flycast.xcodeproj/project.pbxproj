@@ -5091,6 +5091,8 @@
 					"\"$(SRCROOT)/flycast/core/deps/zlib\"",
 					"\"$(SRCROOT)/flycast/core/deps/nowide/include\"",
 					"\"$(SRCROOT)/flycast/core/deps/vixl\"",
+					"\"$(SRCROOT)/flycast/core/hw/arm7\"",
+					"\"$(SRCROOT)/flycast/core/rec-ARM64\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "\"$(USER_LIBRARY_DIR)/Application Support/OpenEmu/Cores\"";
@@ -5167,6 +5169,8 @@
 					"\"$(SRCROOT)/flycast/core/deps/zlib\"",
 					"\"$(SRCROOT)/flycast/core/deps/nowide/include\"",
 					"\"$(SRCROOT)/flycast/core/deps/vixl\"",
+					"\"$(SRCROOT)/flycast/core/hw/arm7\"",
+					"\"$(SRCROOT)/flycast/core/rec-ARM64\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "\"$(USER_LIBRARY_DIR)/Application Support/OpenEmu/Cores\"";
