@@ -19,7 +19,7 @@
 /* #undef HAVE__UNLINK */
 #define HAVE_ARC4RANDOM
 #define HAVE_CLONEFILE
-/* #undef HAVE_COMMONCRYPTO */
+#define HAVE_COMMONCRYPTO
 /* #undef HAVE_CRYPTO */
 /* #undef HAVE_FICLONERANGE */
 #define HAVE_FILENO
@@ -27,7 +27,7 @@
 #define HAVE_FTELLO
 #define HAVE_GETPROGNAME
 /* #undef HAVE_GNUTLS */
-/* #undef HAVE_LIBBZ2 */
+#define HAVE_LIBBZ2
 /* #undef HAVE_LIBLZMA */
 /* #undef HAVE_LIBZSTD */
 #define HAVE_LOCALTIME_R
