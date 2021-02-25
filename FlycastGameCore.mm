@@ -40,6 +40,8 @@
 #include "hw/maple/maple_devs.h"
 #include "hw/pvr/Renderer_if.h"
 #include "hw/pvr/pvr_mem.h"
+#include "hw/pvr/ta_ctx.h"
+#include "hw/pvr/Renderer_if.h"
 #include "oslib/oslib.h"
 #include "oslib/audiostream.h"
 #include "rend/gui.h"
@@ -106,23 +108,11 @@ char bios_dir[1024];
 # pragma mark - Reicast Execution functions
 
 extern void common_linux_setup();
-extern int reicast_init(int argc, char* argv[]);
 
-extern void dc_exit();
-extern void dc_resume();
-extern void dc_stop();
-extern void dc_run();
-extern void dc_reset(bool manual);
-extern void dc_request_reset();
 extern void dc_start_game(const char *path);
 
-extern void rend_init_renderer();
 extern int screen_width,screen_height;
-extern bool rend_framePending();
-extern bool rend_single_frame(const bool& enabled);
 
-extern void dc_savestate();
-extern void dc_loadstate();
 extern void dc_SetStateName (const std::string &fileName);
 
 int darw_printf(const char* text,...) {
@@ -159,12 +149,12 @@ volatile bool has_init = false;
     [[NSFileManager defaultManager] createDirectoryAtURL:[[NSURL fileURLWithPath:[self supportDirectoryPath]] URLByAppendingPathComponent:@"data"] withIntermediateDirectories:YES attributes:nil error:nil];
     
     //setup the user and system directories
-    set_user_config_dir([[self supportDirectoryPath] UTF8String]);
-    set_user_data_dir([SavesDirectory URLByAppendingPathComponent:romFile].path.fileSystemRepresentation);
-    add_system_data_dir([[self supportDirectoryPath] UTF8String]);
+    set_user_config_dir([[self supportDirectoryPath] fileSystemRepresentation]);
+    set_user_data_dir([SavesDirectory URLByAppendingPathComponent:romFile].fileSystemRepresentation);
+    add_system_data_dir([[self supportDirectoryPath] fileSystemRepresentation]);
     
     //Setup the bios directory
-    snprintf(bios_dir,sizeof(bios_dir),"%s%c",[[self biosDirectoryPath] UTF8String],'/');
+    snprintf(bios_dir,sizeof(bios_dir),"%s%c",[[self biosDirectoryPath] fileSystemRepresentation],'/');
     
     //Initialize core gles
     InitRenderApi();
@@ -216,14 +206,14 @@ volatile bool has_init = false;
     if (!system_init && !has_init)
     {
         //Set the game to the virtual drive
-        cfgSetVirtual ("config", "image", [romPath UTF8String]);
+        cfgSetVirtual ("config", "image", [romPath fileSystemRepresentation]);
         
         //start the reicast core
         [self emu_init];
         
         gui_state = Closed;
         
-        dc_start_game([romPath UTF8String]);
+        dc_start_game([romPath fileSystemRepresentation]);
         
         dc_resume();
     }
@@ -403,7 +393,7 @@ void os_SetupInput()
 #endif
 }
 
-void UpdateInputState(u32 port) {}
+void UpdateInputState() {}
 
 void UpdateVibration(u32 port, u32 value) {}
 
@@ -565,10 +555,6 @@ std::string os_Locale(){
 
 std::string os_PrecomposedString(std::string string){
     return [[[NSString stringWithUTF8String:string.c_str()] precomposedStringWithCanonicalMapping] UTF8String];
-}
-
-void UpdateInputState() {
-
 }
 
 @end
