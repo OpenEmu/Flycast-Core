@@ -104,7 +104,6 @@ __weak FlycastGameCore *_current;
 }
 
 static bool system_init;
-char bios_dir[1024];
 
 # pragma mark - Reicast Execution functions
 
@@ -145,7 +144,7 @@ volatile bool has_init = false;
     [[NSFileManager defaultManager] createDirectoryAtURL:[SavesDirectory URLByAppendingPathComponent:romFile] withIntermediateDirectories:YES attributes:nil error:nil];
     
     // create the data directory
-    [[NSFileManager defaultManager] createDirectoryAtURL:[[NSURL fileURLWithPath:[self supportDirectoryPath]] URLByAppendingPathComponent:@"data"] withIntermediateDirectories:YES attributes:nil error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtPath:[[self supportDirectoryPath] stringByAppendingPathComponent:@"data"] withIntermediateDirectories:YES attributes:nil error:nil];
     
     //setup the user and system directories
     set_user_config_dir([[self supportDirectoryPath] fileSystemRepresentation]);
@@ -153,7 +152,7 @@ volatile bool has_init = false;
     add_system_data_dir([[self supportDirectoryPath] fileSystemRepresentation]);
     
     //Setup the bios directory
-    snprintf(bios_dir,sizeof(bios_dir),"%s%c",[[self biosDirectoryPath] fileSystemRepresentation],'/');
+    add_system_data_dir([self biosDirectoryPath].fileSystemRepresentation);
     
     //Initialize core gles
     InitRenderApi();

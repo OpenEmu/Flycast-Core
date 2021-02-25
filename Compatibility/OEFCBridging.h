@@ -30,8 +30,6 @@
 
 #include <string>
 
-extern char bios_dir[1024];
-
 extern void dc_SetStateName (const std::string &fileName);
 
 #endif /* OEFCBridging_h */
