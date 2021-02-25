@@ -449,8 +449,8 @@
 
 /* Begin PBXFileReference section */
 		08169A211BD9D96D00BD740D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		08169A221BD9EF1B00BD740D /* audiobackend_openemu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audiobackend_openemu.h; sourceTree = "<group>"; };
-		08169A231BD9EF1B00BD740D /* audiobackend_openemu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = audiobackend_openemu.mm; sourceTree = "<group>"; };
+		08169A221BD9EF1B00BD740D /* audiobackend_openemu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audiobackend_openemu.h; sourceTree = "<group>"; usesTabs = 0; };
+		08169A231BD9EF1B00BD740D /* audiobackend_openemu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = audiobackend_openemu.mm; sourceTree = "<group>"; usesTabs = 0; };
 		08169A3C1BD9EFED00BD740D /* build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = build.h; sourceTree = "<group>"; };
 		08169A3E1BD9EFED00BD740D /* cfg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfg.cpp; sourceTree = "<group>"; };
 		08169A3F1BD9EFED00BD740D /* cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfg.h; sourceTree = "<group>"; };
@@ -903,8 +903,8 @@
 		8CAFA7B91785AF4200647A96 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8CAFC10F1785B63900647A96 /* Flycast.oecoreplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Flycast.oecoreplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAFC1221785B6C400647A96 /* OpenEmuBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CAFC1241785B6F700647A96 /* FlycastGameCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlycastGameCore.h; sourceTree = "<group>"; };
-		8CAFC1251785B6F700647A96 /* FlycastGameCore.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FlycastGameCore.mm; sourceTree = "<group>"; };
+		8CAFC1241785B6F700647A96 /* FlycastGameCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlycastGameCore.h; sourceTree = "<group>"; usesTabs = 0; };
+		8CAFC1251785B6F700647A96 /* FlycastGameCore.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FlycastGameCore.mm; sourceTree = "<group>"; usesTabs = 0; };
 		8CAFC18C1785C48600647A96 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EE08144C21913448007FD1AB /* nullDC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nullDC.cpp; sourceTree = "<group>"; usesTabs = 0; };
 		EE0814532191387F007FD1AB /* xbrz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xbrz.h; sourceTree = "<group>"; };
