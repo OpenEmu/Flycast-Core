@@ -44,10 +44,9 @@ extern bool fast_forward_mode;
 
 //OpenEmu start
 
+#include "OEFCBridging.h"
 #include <functional>
-std::string OEStateFilePath;
-
-extern char bios_dir[1024];
+static std::string OEStateFilePath;
 
 void dc_SetStateName (const std::string &fileName)
 {

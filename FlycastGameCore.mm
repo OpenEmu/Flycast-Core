@@ -29,6 +29,7 @@
 #import <Carbon/Carbon.h>
 
 #include "audiobackend_openemu.h"
+#include "OEFCBridging.h"
 
 #include "types.h"
 #include "emulator.h"
@@ -102,7 +103,7 @@ __weak FlycastGameCore *_current;
     free(_soundBuffer);
 }
 
-bool system_init;
+static bool system_init;
 char bios_dir[1024];
 
 # pragma mark - Reicast Execution functions
@@ -112,8 +113,6 @@ extern void common_linux_setup();
 extern void dc_start_game(const char *path);
 
 extern int screen_width,screen_height;
-
-extern void dc_SetStateName (const std::string &fileName);
 
 int darw_printf(const char* text,...) {
     va_list args;

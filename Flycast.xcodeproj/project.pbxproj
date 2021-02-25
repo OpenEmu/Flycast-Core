@@ -690,6 +690,7 @@
 		08E24C2C1BA2437900EEA1A5 /* OEDCSystemResponderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OEDCSystemResponderClient.h; path = ../OpenEmu/SystemPlugins/Dreamcast/OEDCSystemResponderClient.h; sourceTree = "<group>"; };
 		08E24C2D1BA2489000EEA1A5 /* Flycast-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Flycast-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		552EA8D625E47EA600879856 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		554395D325E763C600004D74 /* OEFCBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OEFCBridging.h; sourceTree = "<group>"; };
 		554FCB7D25E6F4F6000B8B24 /* zip_algorithm_bzip2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_algorithm_bzip2.c; sourceTree = "<group>"; };
 		554FCB7E25E6F4F6000B8B24 /* zip_crypto_commoncrypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_crypto_commoncrypto.c; sourceTree = "<group>"; };
 		554FCB7F25E6F4F6000B8B24 /* zip_crypto_commoncrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip_crypto_commoncrypto.h; sourceTree = "<group>"; };
@@ -2658,6 +2659,7 @@
 				5FEEDA8C25E46756000ABF02 /* deps_headers */,
 				EE0D7176228F83CA00D721E9 /* version.h */,
 				EE08144C21913448007FD1AB /* nullDC.cpp */,
+				554395D325E763C600004D74 /* OEFCBridging.h */,
 			);
 			path = Compatibility;
 			sourceTree = "<group>";
