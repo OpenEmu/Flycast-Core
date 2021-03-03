@@ -131,7 +131,6 @@ volatile bool has_init = false;
 # pragma mark - Reicast thread
 - (void)emu_init
 {
-    settings.profile.run_counts=0;
     common_linux_setup();
     
     //Register our own audio backend
@@ -209,7 +208,7 @@ volatile bool has_init = false;
         //start the reicast core
         [self emu_init];
         
-        gui_state = Closed;
+        gui_state = GuiState::Closed;
         
         dc_start_game([romPath fileSystemRepresentation]);
         
@@ -382,9 +381,9 @@ void os_SetupInput()
 #if DC_PLATFORM == DC_PLATFORM_DREAMCAST
    for (int i = 0; i < DC_Contollers; i++)
     {
-        settings.input.maple_devices[i] = MDT_SegaController;
-        settings.input.maple_expansion_devices[i][0] = i == 0 ? MDT_SegaVMU : MDT_None;
-        settings.input.maple_expansion_devices[i][1] = i == 0 ? MDT_SegaVMU : MDT_None;
+        config::MapleMainDevices[i] = MDT_SegaController;
+        config::MapleExpansionDevices[i][0] = i == 0 ? MDT_SegaVMU : MDT_None;
+        config::MapleExpansionDevices[i][1] = i == 0 ? MDT_SegaVMU : MDT_None;
     }
     
     mcfg_CreateDevices();

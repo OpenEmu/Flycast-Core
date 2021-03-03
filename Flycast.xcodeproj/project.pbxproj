@@ -86,7 +86,6 @@
 		08169C851BD9EFEE00BD740D /* sgc_if.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B101BD9EFED00BD740D /* sgc_if.cpp */; };
 		08169C871BD9EFEE00BD740D /* arm_mem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B161BD9EFED00BD740D /* arm_mem.cpp */; };
 		08169C881BD9EFEE00BD740D /* vbaARM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B191BD9EFED00BD740D /* vbaARM.cpp */; };
-		08169C891BD9EFEE00BD740D /* virt_arm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B1A1BD9EFED00BD740D /* virt_arm.cpp */; };
 		08169C8A1BD9EFEE00BD740D /* gdrom_response.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B201BD9EFED00BD740D /* gdrom_response.cpp */; };
 		08169C8B1BD9EFEE00BD740D /* gdromv3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B211BD9EFED00BD740D /* gdromv3.cpp */; };
 		08169C8C1BD9EFEE00BD740D /* holly_intc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169B241BD9EFED00BD740D /* holly_intc.cpp */; };
@@ -150,11 +149,17 @@
 		08169CE01BD9EFEE00BD740D /* gltex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BEE1BD9EFED00BD740D /* gltex.cpp */; };
 		08169CE31BD9EFEE00BD740D /* TexCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BF41BD9EFED00BD740D /* TexCache.cpp */; };
 		552EA8D725E47EA600879856 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 552EA8D625E47EA600879856 /* libz.tbd */; };
+		553A616A25EF6CA6001874B5 /* arm7_rec_arm32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553A616425EF6CA6001874B5 /* arm7_rec_arm32.cpp */; };
+		553A616B25EF6CA6001874B5 /* arm7_rec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553A616525EF6CA6001874B5 /* arm7_rec.cpp */; };
+		553A616C25EF6CA6001874B5 /* arm7_rec_arm64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553A616625EF6CA6001874B5 /* arm7_rec_arm64.cpp */; };
+		553A616E25EF6CA6001874B5 /* arm7_rec_x64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553A616925EF6CA6001874B5 /* arm7_rec_x64.cpp */; };
+		553A617525EF6D3C001874B5 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BAD1BD9EFED00BD740D /* context.cpp */; };
+		553A618125EF72D0001874B5 /* option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553A618025EF72D0001874B5 /* option.cpp */; };
+		553A618425EF7310001874B5 /* rec_arm64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDBF325E474E7000ABF02 /* rec_arm64.cpp */; };
+		553A618725EF7344001874B5 /* posix_vmem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEED79325E43087000ABF02 /* posix_vmem.cpp */; };
 		554FCB8025E6F4F6000B8B24 /* zip_algorithm_bzip2.c in Sources */ = {isa = PBXBuildFile; fileRef = 554FCB7D25E6F4F6000B8B24 /* zip_algorithm_bzip2.c */; };
 		554FCB8125E6F4F6000B8B24 /* zip_crypto_commoncrypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 554FCB7E25E6F4F6000B8B24 /* zip_crypto_commoncrypto.c */; };
 		554FCB8525E6F560000B8B24 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 554FCB8425E6F560000B8B24 /* libbz2.tbd */; };
-		5FA0D28E25E6C2C200E14B8A /* rec_arm64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FA0D28C25E6C2C200E14B8A /* rec_arm64.cpp */; };
-		5FA0D28F25E6C2C200E14B8A /* arm64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FA0D28D25E6C2C200E14B8A /* arm64.cpp */; };
 		5FEED77625E422C2000ABF02 /* rtl8139c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEED77425E422C2000ABF02 /* rtl8139c.cpp */; };
 		5FEED77725E422C2000ABF02 /* bba.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEED77525E422C2000ABF02 /* bba.cpp */; };
 		5FEED77B25E422CE000ABF02 /* dsp_x64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEED77A25E422CE000ABF02 /* dsp_x64.cpp */; };
@@ -251,8 +256,6 @@
 		5FEEDA7325E44CAC000ABF02 /* rzip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDA7225E44CAC000ABF02 /* rzip.cpp */; };
 		5FEEDA7725E44D4B000ABF02 /* zip_random_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDA7625E44D4B000ABF02 /* zip_random_unix.c */; };
 		5FEEDA7E25E44EAC000ABF02 /* nullDC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE08144C21913448007FD1AB /* nullDC.cpp */; };
-		5FEEDADF25E46756000ABF02 /* posix_vmem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDA8A25E46756000ABF02 /* posix_vmem.cpp */; };
-		5FEEDAE025E46756000ABF02 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDA8B25E46756000ABF02 /* context.cpp */; };
 		5FEEDBEF25E47403000ABF02 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08169BAC1BD9EFED00BD740D /* common.cpp */; };
 		5FEEDC3325E47597000ABF02 /* utils-vixl.cc in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDC0025E47597000ABF02 /* utils-vixl.cc */; };
 		5FEEDE9D25E48D2C000ABF02 /* cpu-features.cc in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDBFB25E47597000ABF02 /* cpu-features.cc */; };
@@ -539,8 +542,6 @@
 		08169B161BD9EFED00BD740D /* arm_mem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arm_mem.cpp; sourceTree = "<group>"; };
 		08169B171BD9EFED00BD740D /* arm_mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arm_mem.h; sourceTree = "<group>"; };
 		08169B191BD9EFED00BD740D /* vbaARM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vbaARM.cpp; sourceTree = "<group>"; };
-		08169B1A1BD9EFED00BD740D /* virt_arm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = virt_arm.cpp; sourceTree = "<group>"; };
-		08169B1B1BD9EFED00BD740D /* virt_arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = virt_arm.h; sourceTree = "<group>"; };
 		08169B1D1BD9EFED00BD740D /* flashrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flashrom.h; sourceTree = "<group>"; };
 		08169B1F1BD9EFED00BD740D /* gdrom_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gdrom_if.h; sourceTree = "<group>"; };
 		08169B201BD9EFED00BD740D /* gdrom_response.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gdrom_response.cpp; sourceTree = "<group>"; };
@@ -690,13 +691,19 @@
 		08E24C2C1BA2437900EEA1A5 /* OEDCSystemResponderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OEDCSystemResponderClient.h; path = ../OpenEmu/SystemPlugins/Dreamcast/OEDCSystemResponderClient.h; sourceTree = "<group>"; };
 		08E24C2D1BA2489000EEA1A5 /* Flycast-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Flycast-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		552EA8D625E47EA600879856 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		553A616425EF6CA6001874B5 /* arm7_rec_arm32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arm7_rec_arm32.cpp; sourceTree = "<group>"; };
+		553A616525EF6CA6001874B5 /* arm7_rec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arm7_rec.cpp; sourceTree = "<group>"; };
+		553A616625EF6CA6001874B5 /* arm7_rec_arm64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arm7_rec_arm64.cpp; sourceTree = "<group>"; };
+		553A616725EF6CA6001874B5 /* arm7_rec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arm7_rec.h; sourceTree = "<group>"; };
+		553A616925EF6CA6001874B5 /* arm7_rec_x64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arm7_rec_x64.cpp; sourceTree = "<group>"; };
+		553A617F25EF72D0001874B5 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = option.h; sourceTree = "<group>"; };
+		553A618025EF72D0001874B5 /* option.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = option.cpp; sourceTree = "<group>"; };
+		553A618F25EF757C001874B5 /* xbyak_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xbyak_base.h; sourceTree = "<group>"; };
 		554395D325E763C600004D74 /* OEFCBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OEFCBridging.h; sourceTree = "<group>"; };
 		554FCB7D25E6F4F6000B8B24 /* zip_algorithm_bzip2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_algorithm_bzip2.c; sourceTree = "<group>"; };
 		554FCB7E25E6F4F6000B8B24 /* zip_crypto_commoncrypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_crypto_commoncrypto.c; sourceTree = "<group>"; };
 		554FCB7F25E6F4F6000B8B24 /* zip_crypto_commoncrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip_crypto_commoncrypto.h; sourceTree = "<group>"; };
 		554FCB8425E6F560000B8B24 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
-		5FA0D28C25E6C2C200E14B8A /* rec_arm64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rec_arm64.cpp; sourceTree = "<group>"; };
-		5FA0D28D25E6C2C200E14B8A /* arm64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arm64.cpp; sourceTree = "<group>"; };
 		5FEED75825E42126000ABF02 /* E_VLoadStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_VLoadStore.h; sourceTree = "<group>"; };
 		5FEED75925E42126000ABF02 /* E_Parallel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_Parallel.h; sourceTree = "<group>"; };
 		5FEED75A25E42126000ABF02 /* E_Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_Status.h; sourceTree = "<group>"; };
@@ -847,8 +854,6 @@
 		5FEEDA7125E44CAC000ABF02 /* rzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rzip.h; sourceTree = "<group>"; };
 		5FEEDA7225E44CAC000ABF02 /* rzip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rzip.cpp; sourceTree = "<group>"; };
 		5FEEDA7625E44D4B000ABF02 /* zip_random_unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_random_unix.c; sourceTree = "<group>"; };
-		5FEEDA8A25E46756000ABF02 /* posix_vmem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = posix_vmem.cpp; sourceTree = "<group>"; };
-		5FEEDA8B25E46756000ABF02 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		5FEEDA8D25E46756000ABF02 /* miniupnpcstrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miniupnpcstrings.h; sourceTree = "<group>"; };
 		5FEEDA8E25E46756000ABF02 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		5FEEDA8F25E46756000ABF02 /* zipconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zipconf.h; sourceTree = "<group>"; };
@@ -895,7 +900,6 @@
 		5FEEDC2F25E47597000ABF02 /* abi-aarch64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "abi-aarch64.h"; sourceTree = "<group>"; };
 		5FEEDC3025E47597000ABF02 /* assembler-aarch64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "assembler-aarch64.cc"; sourceTree = "<group>"; };
 		5FEEDC3125E47597000ABF02 /* code-buffer-vixl.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "code-buffer-vixl.cc"; sourceTree = "<group>"; };
-		5FEEDEB625E49E7F000ABF02 /* arm64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arm64.cpp; sourceTree = "<group>"; };
 		5FEEDEC125E4A9DA000ABF02 /* dsp_arm64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dsp_arm64.cpp; sourceTree = "<group>"; };
 		8CAFA7B41785AF4200647A96 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8CAFA7B71785AF4200647A96 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -1790,6 +1794,8 @@
 				08169A401BD9EFED00BD740D /* cl.cpp */,
 				08169A411BD9EFED00BD740D /* ini.cpp */,
 				08169A421BD9EFED00BD740D /* ini.h */,
+				553A618025EF72D0001874B5 /* option.cpp */,
+				553A617F25EF72D0001874B5 /* option.h */,
 			);
 			path = cfg;
 			sourceTree = "<group>";
@@ -2046,15 +2052,17 @@
 		08169B121BD9EFED00BD740D /* arm7 */ = {
 			isa = PBXGroup;
 			children = (
-				5FEEDEB625E49E7F000ABF02 /* arm64.cpp */,
-				08169B131BD9EFED00BD740D /* arm-new.h */,
-				08169B141BD9EFED00BD740D /* arm7.cpp */,
-				08169B151BD9EFED00BD740D /* arm7.h */,
 				08169B161BD9EFED00BD740D /* arm_mem.cpp */,
 				08169B171BD9EFED00BD740D /* arm_mem.h */,
+				08169B131BD9EFED00BD740D /* arm-new.h */,
+				553A616425EF6CA6001874B5 /* arm7_rec_arm32.cpp */,
+				553A616625EF6CA6001874B5 /* arm7_rec_arm64.cpp */,
+				553A616925EF6CA6001874B5 /* arm7_rec_x64.cpp */,
+				553A616525EF6CA6001874B5 /* arm7_rec.cpp */,
+				553A616725EF6CA6001874B5 /* arm7_rec.h */,
+				08169B141BD9EFED00BD740D /* arm7.cpp */,
+				08169B151BD9EFED00BD740D /* arm7.h */,
 				08169B191BD9EFED00BD740D /* vbaARM.cpp */,
-				08169B1A1BD9EFED00BD740D /* virt_arm.cpp */,
-				08169B1B1BD9EFED00BD740D /* virt_arm.h */,
 			);
 			path = arm7;
 			sourceTree = "<group>";
@@ -2652,10 +2660,6 @@
 		EE08144921913448007FD1AB /* Compatibility */ = {
 			isa = PBXGroup;
 			children = (
-				5FA0D28D25E6C2C200E14B8A /* arm64.cpp */,
-				5FA0D28C25E6C2C200E14B8A /* rec_arm64.cpp */,
-				5FEEDA8B25E46756000ABF02 /* context.cpp */,
-				5FEEDA8A25E46756000ABF02 /* posix_vmem.cpp */,
 				5FEEDA8C25E46756000ABF02 /* deps_headers */,
 				EE0D7176228F83CA00D721E9 /* version.h */,
 				EE08144C21913448007FD1AB /* nullDC.cpp */,
@@ -2848,6 +2852,7 @@
 			children = (
 				EE08151D21913C7D007FD1AB /* rec_x64.cpp */,
 				EE1FB83B22036B040083411F /* x64_regalloc.h */,
+				553A618F25EF757C001874B5 /* xbyak_base.h */,
 			);
 			path = "rec-x64";
 			sourceTree = "<group>";
@@ -3983,6 +3988,7 @@
 				08169C451BD9EFED00BD740D /* zip_error_to_str.c in Sources */,
 				5FEED8A825E43B27000ABF02 /* zip_source_stat.c in Sources */,
 				08169CC91BD9EFEE00BD740D /* audiobackend_alsa.cpp in Sources */,
+				553A616A25EF6CA6001874B5 /* arm7_rec_arm32.cpp in Sources */,
 				5FEEDA6D25E44C20000ABF02 /* pico_dhcp_server.c in Sources */,
 				08169CCB1BD9EFEE00BD740D /* audiobackend_oss.cpp in Sources */,
 				EE0814F92191393D007FD1AB /* pico_frame.c in Sources */,
@@ -4034,7 +4040,6 @@
 				08169C4A1BD9EFED00BD740D /* zip_file_strerror.c in Sources */,
 				EE08151621913968007FD1AB /* dsp_interp.cpp in Sources */,
 				5FEED8E025E43B27000ABF02 /* zip_dir_add.c in Sources */,
-				08169C891BD9EFEE00BD740D /* virt_arm.cpp in Sources */,
 				5FEED8B925E43B27000ABF02 /* zip_file_rename.c in Sources */,
 				08169CBD1BD9EFEE00BD740D /* ioctl.cpp in Sources */,
 				EEC2B86123B82209006E959C /* Logger.cpp in Sources */,
@@ -4087,15 +4092,16 @@
 				08169C561BD9EFEE00BD740D /* zip_name_locate.c in Sources */,
 				EEC2B88623B82209006E959C /* PpContext.cpp in Sources */,
 				08169C421BD9EFED00BD740D /* zip_error_get.c in Sources */,
+				553A618425EF7310001874B5 /* rec_arm64.cpp in Sources */,
 				5FEEDEA525E48D49000ABF02 /* simulator-aarch64.cc in Sources */,
 				EEC2B85E23B82209006E959C /* SpvBuilder.cpp in Sources */,
 				5FEED79D25E430D9000ABF02 /* miniupnp.cpp in Sources */,
 				EE1FB87E2203769C0083411F /* lpc_intrin_sse.c in Sources */,
 				EEC2B87D23B82209006E959C /* reflection.cpp in Sources */,
 				EE1FB8952208E0F90083411F /* stdclass.cpp in Sources */,
-				5FA0D28E25E6C2C200E14B8A /* rec_arm64.cpp in Sources */,
 				EE10AF1321923A19002814A4 /* LzmaDec.c in Sources */,
 				EE4A6CCB24AF9CAE000F8E1A /* glm.cpp in Sources */,
+				553A618125EF72D0001874B5 /* option.cpp in Sources */,
 				08169C051BD9EFED00BD740D /* cdipsr.cpp in Sources */,
 				EE1FB8782203769C0083411F /* metadata_object.c in Sources */,
 				EEC2B87523B82209006E959C /* iomapper.cpp in Sources */,
@@ -4144,7 +4150,6 @@
 				EE51F4B1220A373400BCC098 /* gdcartridge.cpp in Sources */,
 				08169CE31BD9EFEE00BD740D /* TexCache.cpp in Sources */,
 				EE1FB8842203769C0083411F /* windows_unicode_filenames.c in Sources */,
-				5FEEDAE025E46756000ABF02 /* context.cpp in Sources */,
 				08169C431BD9EFED00BD740D /* zip_error_get_sys_type.c in Sources */,
 				08169C8A1BD9EFEE00BD740D /* gdrom_response.cpp in Sources */,
 				EE1FB8292203671D0083411F /* Lzma2Dec.c in Sources */,
@@ -4154,6 +4159,7 @@
 				08169C5C1BD9EFEE00BD740D /* zip_set_archive_flag.c in Sources */,
 				EEC2B87823B82209006E959C /* InfoSink.cpp in Sources */,
 				08169C9A1BD9EFEE00BD740D /* pvr_sb_regs.cpp in Sources */,
+				553A616B25EF6CA6001874B5 /* arm7_rec.cpp in Sources */,
 				5FEED8F325E43B27000ABF02 /* zip_fopen_index_encrypted.c in Sources */,
 				5FEED8AC25E43B27000ABF02 /* zip_file_set_encryption.c in Sources */,
 				08169CA71BD9EFEE00BD740D /* bsc.cpp in Sources */,
@@ -4245,12 +4251,13 @@
 				08169CB41BD9EFEE00BD740D /* sh4_mmr.cpp in Sources */,
 				EEC2B86F23B82209006E959C /* Initialize.cpp in Sources */,
 				EE10AF1921923A19002814A4 /* LzmaLib.c in Sources */,
-				5FEEDADF25E46756000ABF02 /* posix_vmem.cpp in Sources */,
+				553A616E25EF6CA6001874B5 /* arm7_rec_x64.cpp in Sources */,
 				5FEED8DA25E43B27000ABF02 /* zip_pkware.c in Sources */,
 				08169C5D1BD9EFEE00BD740D /* zip_set_file_comment.c in Sources */,
 				EEC2B8B423B82A34006E959C /* osx.cpp in Sources */,
 				EE10AEE02192331A002814A4 /* cdrom.c in Sources */,
 				EEDDD8CC234D1F0900265FEB /* audiobackend_omx.cpp in Sources */,
+				553A617525EF6D3C001874B5 /* context.cpp in Sources */,
 				EE08B8B1220DC7F900BF2CAA /* imgui_widgets.cpp in Sources */,
 				08169C5E1BD9EFEE00BD740D /* zip_set_name.c in Sources */,
 				5FEEDEAB25E48D49000ABF02 /* code-buffer-vixl.cc in Sources */,
@@ -4258,11 +4265,12 @@
 				EE10AEDF2192331A002814A4 /* huffman.c in Sources */,
 				08169CA91BD9EFEE00BD740D /* cpg.cpp in Sources */,
 				EE0815022191393D007FD1AB /* pico_udp.c in Sources */,
+				553A618725EF7344001874B5 /* posix_vmem.cpp in Sources */,
 				08169CB61BD9EFEE00BD740D /* sh4_rom.cpp in Sources */,
 				EEDDD8CB234D1F0900265FEB /* audiobackend_libao.cpp in Sources */,
 				EEC2B88523B82209006E959C /* PpTokens.cpp in Sources */,
+				553A616C25EF6CA6001874B5 /* arm7_rec_arm64.cpp in Sources */,
 				5FEED8F025E43B27000ABF02 /* zip_file_replace.c in Sources */,
-				5FA0D28F25E6C2C200E14B8A /* arm64.cpp in Sources */,
 				5FEED82425E432F4000ABF02 /* upnpcommands.c in Sources */,
 				EEDDD8DD234D20D600265FEB /* ssa.cpp in Sources */,
 				5FEEDEBC25E49ECC000ABF02 /* arm7.cpp in Sources */,
