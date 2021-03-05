@@ -704,6 +704,7 @@
 		554FCB7E25E6F4F6000B8B24 /* zip_crypto_commoncrypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_crypto_commoncrypto.c; sourceTree = "<group>"; };
 		554FCB7F25E6F4F6000B8B24 /* zip_crypto_commoncrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip_crypto_commoncrypto.h; sourceTree = "<group>"; };
 		554FCB8425E6F560000B8B24 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		55CF0EFB25F20BC6007F1CD6 /* Flycast.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = Flycast.exp; sourceTree = "<group>"; };
 		5FEED75825E42126000ABF02 /* E_VLoadStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_VLoadStore.h; sourceTree = "<group>"; };
 		5FEED75925E42126000ABF02 /* E_Parallel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_Parallel.h; sourceTree = "<group>"; };
 		5FEED75A25E42126000ABF02 /* E_Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_Status.h; sourceTree = "<group>"; };
@@ -2653,6 +2654,7 @@
 			children = (
 				08169A211BD9D96D00BD740D /* Info.plist */,
 				08E24C2D1BA2489000EEA1A5 /* Flycast-Prefix.pch */,
+				55CF0EFB25F20BC6007F1CD6 /* Flycast.exp */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -4414,6 +4416,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = NO;
+				EXPORTED_SYMBOLS_FILE = Flycast.exp;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_NO_COREIO_HTTP,
@@ -4477,6 +4480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.openemu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Flycast;
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Compatibility\"";
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = oecoreplugin;
@@ -4495,6 +4499,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = NO;
 				DEAD_CODE_STRIPPING = YES;
+				EXPORTED_SYMBOLS_FILE = Flycast.exp;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_NO_COREIO_HTTP,
