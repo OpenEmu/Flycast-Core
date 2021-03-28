@@ -37,8 +37,7 @@
 #include "network/naomi_network.h"
 #include "rend/mainui.h"
 #include "archive/rzip.h"
-
-extern bool fast_forward_mode;
+#include "debug/gdb_server.h"
 
 //OpenEmu start
 
@@ -388,6 +387,7 @@ void dc_reset(bool hard)
 }
 
 static bool reset_requested;
+static bool singleStep;
 
 int reicast_init(int argc, char* argv[])
 {
@@ -426,6 +426,7 @@ int reicast_init(int argc, char* argv[])
     // Needed to avoid crash calling dc_is_running() in gui
     Get_Sh4Interpreter(&sh4_cpu);
     sh4_cpu.Init();
+    debugger::init();
 
     return 0;
 }
@@ -509,7 +510,7 @@ static int get_game_platform(const char *path)
         return DC_PLATFORM_DREAMCAST;
 
     std::string extension = get_file_extension(path);
-    if (extension == "")
+    if (extension.empty())
         return DC_PLATFORM_DREAMCAST;    // unknown
     if (extension == "zip" || extension == "7z")
         return naomi_cart_GetPlatform(path);
@@ -601,7 +602,7 @@ void dc_start_game(const char *path)
         gui_display_notification("Widescreen cheat activated", 1000);
         config::ScreenStretching.override(134);    // 4:3 -> 16:9
     }
-    fast_forward_mode = false;
+    settings.input.fastForwardMode = false;
     EventManager::event(Event::Start);
     settings.gameStarted = true;
 }
@@ -626,16 +627,24 @@ void* dc_run(void*)
         Get_Sh4Interpreter(&sh4_cpu);
         INFO_LOG(DYNAREC, "Using Interpreter");
     }
-    do {
-        reset_requested = false;
+    if (singleStep)
+    {
+        singleStep = false;
+        sh4_cpu.Step();
+    }
+    else
+    {
+        do {
+            reset_requested = false;
 
-        sh4_cpu.Run();
+            sh4_cpu.Run();
 
-           SaveRomFiles();
+            SaveRomFiles();
 
-           if (reset_requested)
-               dc_reset(false);
-    } while (reset_requested);
+            if (reset_requested)
+                dc_reset(false);
+        } while (reset_requested);
+    }
 
     TermAudio();
 
@@ -660,6 +669,7 @@ void dc_term_game()
 void dc_term()
 {
     dc_term_game();
+    debugger::term();
     dc_cancel_load();
     sh4_cpu.Term();
     if (settings.platform.system != DC_PLATFORM_DREAMCAST)
@@ -742,9 +752,33 @@ void dc_resume()
 {
     SetMemoryHandlers();
     settings.aica.NoBatch = config::ForceWindowsCE || config::DSPEnabled;
+    int hres;
+    int vres = config::RenderResolution;
+    if (config::Widescreen && !config::Rotate90)
+    {
+        hres = config::RenderResolution * 16 / 9;
+    }
+    else if (config::Rotate90)
+    {
+        vres = vres * config::ScreenStretching / 100;
+        hres = config::RenderResolution * 4 / 3;
+    }
+    else
+    {
+        hres = config::RenderResolution * 4 * config::ScreenStretching / 3 / 100;
+    }
+    renderer->Resize(hres, vres);
+
     EventManager::event(Event::Resume);
     if (!emu_thread.thread.joinable())
         emu_thread.Start();
+}
+
+void dc_step()
+{
+    singleStep = true;
+    dc_resume();
+    dc_stop();
 }
 
 static void cleanup_serialize(void *data)

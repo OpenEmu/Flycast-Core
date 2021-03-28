@@ -157,6 +157,7 @@
 		553A618125EF72D0001874B5 /* option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553A618025EF72D0001874B5 /* option.cpp */; };
 		553A618425EF7310001874B5 /* rec_arm64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEDBF325E474E7000ABF02 /* rec_arm64.cpp */; };
 		553A618725EF7344001874B5 /* posix_vmem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FEED79325E43087000ABF02 /* posix_vmem.cpp */; };
+		553AD8A926104EB600E9F910 /* quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553AD8A826104EB600E9F910 /* quad.cpp */; };
 		554FCB8025E6F4F6000B8B24 /* zip_algorithm_bzip2.c in Sources */ = {isa = PBXBuildFile; fileRef = 554FCB7D25E6F4F6000B8B24 /* zip_algorithm_bzip2.c */; };
 		554FCB8125E6F4F6000B8B24 /* zip_crypto_commoncrypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 554FCB7E25E6F4F6000B8B24 /* zip_crypto_commoncrypto.c */; };
 		554FCB8525E6F560000B8B24 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 554FCB8425E6F560000B8B24 /* libbz2.tbd */; };
@@ -699,6 +700,7 @@
 		553A617F25EF72D0001874B5 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = option.h; sourceTree = "<group>"; };
 		553A618025EF72D0001874B5 /* option.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = option.cpp; sourceTree = "<group>"; };
 		553A618F25EF757C001874B5 /* xbyak_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xbyak_base.h; sourceTree = "<group>"; };
+		553AD8A826104EB600E9F910 /* quad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quad.cpp; sourceTree = "<group>"; };
 		554395D325E763C600004D74 /* OEFCBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OEFCBridging.h; sourceTree = "<group>"; };
 		554FCB7D25E6F4F6000B8B24 /* zip_algorithm_bzip2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_algorithm_bzip2.c; sourceTree = "<group>"; };
 		554FCB7E25E6F4F6000B8B24 /* zip_crypto_commoncrypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_crypto_commoncrypto.c; sourceTree = "<group>"; };
@@ -2435,6 +2437,7 @@
 		08169BEA1BD9EFED00BD740D /* gles */ = {
 			isa = PBXGroup;
 			children = (
+				553AD8A826104EB600E9F910 /* quad.cpp */,
 				EE3216D721FEA0F300E09B27 /* glcache.h */,
 				08169BEB1BD9EFED00BD740D /* gldraw.cpp */,
 				08169BEC1BD9EFED00BD740D /* gles.cpp */,
@@ -3951,6 +3954,7 @@
 				5FEED7A025E430D9000ABF02 /* picoppp.cpp in Sources */,
 				08169CD31BD9EFEE00BD740D /* rec_cpp.cpp in Sources */,
 				EEDDD8F7234D266400265FEB /* LogManager.cpp in Sources */,
+				553AD8A926104EB600E9F910 /* quad.cpp in Sources */,
 				08169C5F1BD9EFEE00BD740D /* zip_source_buffer.c in Sources */,
 				08169CD91BD9EFEE00BD740D /* descrambl.cpp in Sources */,
 				5FEED8D325E43B27000ABF02 /* zip_source_write.c in Sources */,
