@@ -27,7 +27,6 @@
 #include "hw/arm7/arm7_rec.h"
 #include "imgread/common.h"
 #include "rend/gui.h"
-#include "profiler/profiler.h"
 #include "input/gamepad_device.h"
 #include "hw/sh4/dyna/blockmanager.h"
 #include "log/LogManager.h"
@@ -53,6 +52,7 @@ void dc_SetStateName (const std::string &fileName)
 // END OpenEmu
 
 settings_t settings;
+extern int screen_width, screen_height;
 
 cThread emu_thread(&dc_run, NULL);
 
@@ -140,7 +140,13 @@ static void LoadSpecialSettings()
                 // Tom Clancy's Rainbow Six (US)
                 || prod_id == "T40401N"
                 // Tom Clancy's Rainbow Six incl. Eagle Watch Missions (EU)
-                || prod_id == "T-45001D05")
+                || prod_id == "T-45001D05"
+                // Jet Grind Radio (US)
+                || prod_id == "MK-51058"
+                // JSR (JP)
+                || prod_id == "HDR-0078"
+                // JSR (EU)
+                || prod_id == "MK-5105850")
         {
             INFO_LOG(BOOT, "Enabling render to texture buffer for game %s", prod_id.c_str());
             config::RenderToTextureBuffer.override(true);
@@ -169,40 +175,7 @@ static void LoadSpecialSettings()
             INFO_LOG(BOOT, "Enabling Extra depth scaling for game %s", prod_id.c_str());
             config::ExtraDepthScale.override(1e26f);
         }
-        // Super Producers
-        if (prod_id == "T14303M"
-            // Giant Killers
-            || prod_id == "T45401D 50"
-            // Wild Metal (US)
-            || prod_id == "T42101N 00"
-            // Wild Metal (EU)
-            || prod_id == "T40501D-50"
-            // Resident Evil 2 (US)
-            || prod_id == "T1205N"
-            // Resident Evil 2 (EU)
-            || prod_id == "T7004D  50"
-            // Rune Jade
-            || prod_id == "T14304M"
-            // Marionette Company
-            || prod_id == "T5202M"
-            // Marionette Company 2
-            || prod_id == "T5203M"
-            // Maximum Pool (for online support)
-            || prod_id == "T11010N"
-            // StarLancer (US) (for online support)
-            || prod_id == "T40209N"
-            // StarLancer (EU) (for online support)
-            || prod_id == "T17723D 05"
-            // Heroes of might and magic III
-            || prod_id == "T0000M"
-            // WebTV
-            || prod_id == "6107117" || prod_id == "610-7390" || prod_id == "610-7391"
-            // PBA
-            || prod_id == "T26702N")
-        {
-            INFO_LOG(BOOT, "Disabling 32-bit virtual memory for game %s", prod_id.c_str());
-            config::DisableVmem32.override(true);
-        }
+
         std::string areas(ip_meta.area_symbols, sizeof(ip_meta.area_symbols));
         bool region_usa = areas.find('U') != std::string::npos;
         bool region_eu = areas.find('E') != std::string::npos;
@@ -381,9 +354,8 @@ static void LoadSpecialSettings()
 void dc_reset(bool hard)
 {
     plugins_Reset(hard);
-    mem_Reset(hard);
-
     sh4_cpu.Reset(hard);
+    mem_Reset(hard);
 }
 
 static bool reset_requested;
@@ -443,23 +415,20 @@ static void set_platform(int platform)
         settings.platform.aram_size = 2 * 1024 * 1024;
         settings.platform.bios_size = 2 * 1024 * 1024;
         settings.platform.flash_size = 128 * 1024;
-        settings.platform.bbsram_size = 0;
         break;
     case DC_PLATFORM_NAOMI:
         settings.platform.ram_size = 32 * 1024 * 1024;
         settings.platform.vram_size = 16 * 1024 * 1024;
         settings.platform.aram_size = 8 * 1024 * 1024;
         settings.platform.bios_size = 2 * 1024 * 1024;
-        settings.platform.flash_size = 0;
-        settings.platform.bbsram_size = 32 * 1024;
+        settings.platform.flash_size = 32 * 1024;    // battery-backed ram
         break;
     case DC_PLATFORM_ATOMISWAVE:
         settings.platform.ram_size = 16 * 1024 * 1024;
         settings.platform.vram_size = 8 * 1024 * 1024;
         settings.platform.aram_size = 8 * 1024 * 1024;
         settings.platform.bios_size = 128 * 1024;
-        settings.platform.flash_size = 0;
-        settings.platform.bbsram_size = 128 * 1024;
+        settings.platform.flash_size = 128 * 1024;    // sram
         break;
     default:
         die("Unsupported platform");
@@ -537,6 +506,8 @@ void dc_start_game(const char *path)
     config::Settings::instance().reset();
     dc_reset(true);
     config::Settings::instance().load(false);
+
+    GamepadDevice::load_system_mappings();
     
     if (settings.platform.system == DC_PLATFORM_DREAMCAST)
     {
@@ -544,7 +515,7 @@ void dc_start_game(const char *path)
         {
             // Boot BIOS
             if (!LoadRomFiles())
-                throw ReicastException("No BIOS file found");
+                throw ReicastException("No BIOS file found in " + get_writable_data_path(""));
             TermDrive();
             InitDrive();
         }
@@ -567,7 +538,7 @@ void dc_start_game(const char *path)
                     // Content load failed. Boot the BIOS
                     settings.imgread.ImagePath[0] = '\0';
                     if (!LoadRomFiles())
-                        throw ReicastException("No BIOS file found");
+                        throw ReicastException("This media cannot be loaded");
                     InitDrive();
                 }
             }
@@ -597,7 +568,8 @@ void dc_start_game(const char *path)
         else if (settings.platform.system == DC_PLATFORM_ATOMISWAVE)
             mcfg_CreateAtomisWaveControllers();
     }
-    if (cheatManager.Reset())
+    cheatManager.reset(config::Settings::instance().getGameId());
+    if (cheatManager.isWidescreen())
     {
         gui_display_notification("Widescreen cheat activated", 1000);
         config::ScreenStretching.override(134);    // 4:3 -> 16:9
@@ -617,12 +589,14 @@ void* dc_run(void*)
 {
     InitAudio();
 
+#if FEAT_SHREC != DYNAREC_NONE
     if (config::DynarecEnabled)
     {
         Get_Sh4Recompiler(&sh4_cpu);
         INFO_LOG(DYNAREC, "Using Recompiler");
     }
     else
+#endif
     {
         Get_Sh4Interpreter(&sh4_cpu);
         INFO_LOG(DYNAREC, "Using Interpreter");
@@ -748,15 +722,16 @@ void SaveSettings()
 #endif
 }
 
-void dc_resume()
+void dc_resize_renderer()
 {
-    SetMemoryHandlers();
-    settings.aica.NoBatch = config::ForceWindowsCE || config::DSPEnabled;
     int hres;
     int vres = config::RenderResolution;
     if (config::Widescreen && !config::Rotate90)
     {
-        hres = config::RenderResolution * 16 / 9;
+        if (config::SuperWidescreen)
+            hres = config::RenderResolution * screen_width / screen_height    ;
+        else
+            hres = config::RenderResolution * 16 / 9;
     }
     else if (config::Rotate90)
     {
@@ -767,7 +742,15 @@ void dc_resume()
     {
         hres = config::RenderResolution * 4 * config::ScreenStretching / 3 / 100;
     }
-    renderer->Resize(hres, vres);
+    if (renderer != nullptr)
+        renderer->Resize(hres, vres);
+}
+
+void dc_resume()
+{
+    SetMemoryHandlers();
+    settings.aica.NoBatch = config::ForceWindowsCE || config::DSPEnabled;
+    dc_resize_renderer();
 
     EventManager::event(Event::Resume);
     if (!emu_thread.thread.joinable())
@@ -783,17 +766,16 @@ void dc_step()
 
 static void cleanup_serialize(void *data)
 {
-    if ( data != NULL )
-        free(data) ;
+    free(data);
 }
 
-static std::string get_savestate_file_path(bool writable)
+static std::string get_savestate_file_path(int index, bool writable)
 {
     //OpenEmu:
     return OEStateFilePath;
 }
 
-void dc_savestate()
+void dc_savestate(int index)
 {
     unsigned int total_size = 0 ;
     void *data = NULL ;
@@ -825,7 +807,7 @@ void dc_savestate()
         return;
     }
 
-    std::string filename = get_savestate_file_path(true);
+    std::string filename = get_savestate_file_path(index, true);
 #if 0
     FILE *f = nowide::fopen(filename.c_str(), "wb") ;
 
@@ -864,14 +846,14 @@ void dc_savestate()
     gui_display_notification("State saved", 1000);
 }
 
-void dc_loadstate()
+void dc_loadstate(int index)
 {
     u32 total_size = 0;
     FILE *f = nullptr;
 
     dc_stop();
 
-    std::string filename = get_savestate_file_path(false);
+    std::string filename = get_savestate_file_path(index, false);
     RZipFile zipFile;
     if (zipFile.Open(filename, false))
     {
@@ -928,10 +910,10 @@ void dc_loadstate()
 #if FEAT_AREC == DYNAREC_JIT
     aicaarm::recompiler::flush();
 #endif
-#ifndef NO_MMU
     mmu_flush_table();
-#endif
+#if FEAT_SHREC != DYNAREC_NONE
     bm_Reset();
+#endif
 
     u32 unserialized_size = 0;
     if ( ! dc_unserialize(&data_ptr, &unserialized_size) )
