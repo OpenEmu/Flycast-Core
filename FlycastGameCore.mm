@@ -332,7 +332,7 @@ void calcFPS(){
 }
 
 # pragma mark - Save States
-- (void)autoloadWaitThread
+- (void)autoloadWaitThread:(id)unused
 {
     @autoreleasepool
     {
@@ -356,6 +356,8 @@ void calcFPS(){
         dc_resume();
 
         block(true, nil);
+    } else {
+        block(false, [NSError errorWithDomain:OEGameCoreErrorDomain code:OEGameCoreCouldNotSaveStateError userInfo:nil]);
     }
 }
 
@@ -364,7 +366,7 @@ void calcFPS(){
     if (!has_init) {
         //Start a separate thread to load
         autoLoadStatefileName = fileName;
-        [NSThread detachNewThreadSelector:@selector(autoloadWaitThread) toTarget:self withObject:nil];
+        [NSThread detachNewThreadSelector:@selector(autoloadWaitThread:) toTarget:self withObject:nil];
     } else {
         dc_SetStateName(fileName.fileSystemRepresentation);
         dc_loadstate();
