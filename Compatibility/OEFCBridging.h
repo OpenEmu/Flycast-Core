@@ -32,4 +32,9 @@
 
 extern void dc_SetStateName (const std::string &fileName);
 
+// Flycast's PVR types (RGBColor, Rect) collide with QuickDraw's, which AppKit
+// pulls in, so the game core cannot include the renderer headers itself.
+extern void oe_init_renderer(void);
+extern double oe_frame_interval(void);
+
 #endif /* OEFCBridging_h */
