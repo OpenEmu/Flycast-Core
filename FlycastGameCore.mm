@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2013, OpenEmu Team
- 
+
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
  * Redistributions of source code must retain the above copyright
@@ -11,7 +11,7 @@
  * Neither the name of the OpenEmu Team nor the
  names of its contributors may be used to endorse or promote products
  derived from this software without specific prior written permission.
- 
+
  THIS SOFTWARE IS PROVIDED BY OpenEmu Team ''AS IS'' AND ANY
  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -26,7 +26,6 @@
 
 #import "FlycastGameCore.h"
 #import <OpenEmuBase/OERingBuffer.h>
-#import <Carbon/Carbon.h>
 
 #include "audiobackend_openemu.h"
 #include "OEFCBridging.h"
@@ -34,47 +33,32 @@
 #include "types.h"
 #include "emulator.h"
 #include "stdclass.h"
-#include "cheats.h"
 #include "cfg/cfg.h"
-#include "hw/mem/_vmem.h"
+#include "cfg/option.h"
 #include "hw/maple/maple_cfg.h"
 #include "hw/maple/maple_devs.h"
-#include "hw/pvr/Renderer_if.h"
-#include "hw/pvr/pvr_mem.h"
-#include "hw/pvr/ta_ctx.h"
-#include "hw/pvr/Renderer_if.h"
+#include "input/gamepad_device.h"
 #include "oslib/oslib.h"
-#include "oslib/audiostream.h"
-#include "rend/gui.h"
-#include "rend/TexCache.h"
-#include <sys/stat.h>
+#include "ui/gui.h"
 #include "wsi/context.h"
 
-#include <OpenGL/gl3.h>
-#include <functional>
+#include <exception>
 
 #define SAMPLERATE 44100
-#define SIZESOUNDBUFFER 44100 / 60 * 4
 #define DC_PLATFORM DC_PLATFORM_DREAMCAST
 #define DC_Contollers 4
 
-#if 1    /* was set to #if 1 by ./configure */
-#  define Z_HAVE_UNISTD_H
-#endif
-
-#if 1    /* was set to #if 1 by ./configure */
-#  define Z_HAVE_STDARG_H
-#endif
-
-typedef std::function<void(bool status, const std::string &message, void *cbUserData)> Callback;
+// Flycast's own window system entry points, provided by this file.
+void common_linux_setup();
 
 @interface FlycastGameCore () <OEDCSystemResponderClient>
 {
-    uint16_t *_soundBuffer;
     int videoWidth, videoHeight;
     NSString *romPath;
     NSString *romFile;
     NSString *autoLoadStatefileName;
+    BOOL coreInitialized;
+    BOOL gameStarted;
 }
 @end
 
@@ -85,83 +69,69 @@ __weak FlycastGameCore *_current;
 - (id)init
 {
     self = [super init];
-    
+
     if(self)
     {
         videoHeight = 480;
         videoWidth = 640;
-        _soundBuffer = (uint16_t *)malloc(SIZESOUNDBUFFER * sizeof(uint16_t));
-        memset(_soundBuffer, 0, SIZESOUNDBUFFER * sizeof(uint16_t));
     }
-    
+
     _current = self;
     return self;
 }
 
-- (void)dealloc
-{
-    free(_soundBuffer);
-}
+# pragma mark - Flycast setup
 
-static bool system_init;
-
-# pragma mark - Reicast Execution functions
-
-extern void common_linux_setup();
-
-extern void dc_start_game(const char *path);
-
-extern int screen_width,screen_height;
-
-int darw_printf(const char* text,...) {
-    va_list args;
-    
-    char temp[2048];
-    va_start(args, text);
-    vsprintf(temp, text, args);
-    va_end(args);
-    
-    NSLog(@"%s", temp);
-    
-    return 0;
-}
-
-volatile bool has_init = false;
-
-# pragma mark - Reicast thread
 - (void)emu_init
 {
+    // Flycast writes code into RAM and protects the pages it has written to, so
+    // it needs its SIGSEGV handler to be installed before the game boots.
     common_linux_setup();
-    
-    //Register our own audio backend
-    RegisterAudioBackend(&audiobackend_openemu);
-    
+
+    // The backend registers itself with the core and writes to OpenEmu's ring
+    // buffer, so it replaces Flycast's own audio drivers.
+    static OpenEmuAudioBackend audioBackend;
+
     // Set battery save dir
     NSURL *SavesDirectory = [NSURL fileURLWithPath:[self batterySavesDirectoryPath]];
-    
+
     //create the save direcory for the game
     [[NSFileManager defaultManager] createDirectoryAtURL:[SavesDirectory URLByAppendingPathComponent:romFile] withIntermediateDirectories:YES attributes:nil error:nil];
-    
+
     // create the data directory
     [[NSFileManager defaultManager] createDirectoryAtPath:[[self supportDirectoryPath] stringByAppendingPathComponent:@"data"] withIntermediateDirectories:YES attributes:nil error:nil];
-    
+
     //setup the user and system directories
     set_user_config_dir([[self supportDirectoryPath] fileSystemRepresentation]);
     set_user_data_dir([SavesDirectory URLByAppendingPathComponent:romFile].fileSystemRepresentation);
     add_system_data_dir([[self supportDirectoryPath] fileSystemRepresentation]);
-    
+
     //Setup the bios directory
     add_system_data_dir([self biosDirectoryPath].fileSystemRepresentation);
-    
-    //Initialize core gles
-    InitRenderApi();
-    rend_init_renderer();
-    
-    char* argv[] = { "reicast" };
-    
-    reicast_init(0, NULL);
-    
-    has_init = true;
+
+    settings.display.width = videoWidth;
+    settings.display.height = videoHeight;
+
+    // A standard controller on every port, with VMUs on the first one. Flycast
+    // reads this when it creates the maple devices while loading a game.
+    for (int port = 0; port < 4; port++)
+    {
+        config::MapleMainDevices[port] = MDT_SegaController;
+        config::MapleExpansionDevices[port][0] = port == 0 ? MDT_SegaVMU : MDT_None;
+        config::MapleExpansionDevices[port][1] = port == 0 ? MDT_SegaVMU : MDT_None;
+    }
+
+    // OpenEmu creates the GL context and binds a framebuffer before every
+    // frame; initRenderApi() only records what it finds there.
+    initRenderApi();
+    oe_init_renderer();
+
+    // Flycast's option parser reads argv[0] for its usage message, so it gets a
+    // program name even though OpenEmu has no command line for it.
+    static char *flycast_argv[] = { (char *)"Flycast", NULL };
+    flycast_init(1, flycast_argv);
+
+    coreInitialized = YES;
 }
 
 # pragma mark - Execution
@@ -170,14 +140,14 @@ volatile bool has_init = false;
 {
     romFile = [[path lastPathComponent] stringByDeletingPathExtension];
     romPath = path;
-    
+
     return YES;
 }
 
 - (void)setupEmulation
 {
-    screen_width = videoWidth;
-    screen_height = videoHeight;
+    settings.display.width = videoWidth;
+    settings.display.height = videoHeight;
 }
 
 - (void)stopEmulation
@@ -185,113 +155,62 @@ volatile bool has_init = false;
     NSLog(@"Stopping Emulation Core");
     //We need this sleep for now until I find a better way of making sure the save is completed
     usleep (10000);
-    
-    dc_exit();
-    
-    has_init = false;
-    
+
+    if (coreInitialized)
+    {
+        dc_exit();
+        flycast_term();
+        termRenderApi();
+
+        coreInitialized = NO;
+        gameStarted = NO;
+    }
+
     [super stopEmulation];
 }
 
 - (void)resetEmulation
 {
-    dc_request_reset();
+    if (gameStarted)
+        emu.requestReset();
 }
 
 - (void)executeFrame
 {
-    if (!system_init && !has_init)
-    {
-        //Set the game to the virtual drive
-        cfgSetVirtual ("config", "image", [romPath fileSystemRepresentation]);
-        
-        //start the reicast core
+    if (!coreInitialized)
         [self emu_init];
-        
-        gui_state = GuiState::Closed;
-        
-        dc_start_game([romPath fileSystemRepresentation]);
-        
-        dc_resume();
-    }
-    
-    //System is initialized - render the frames
-    if (!has_init)
-        return;
-    
-    if (rend_framePending())
+
+    if (!gameStarted)
     {
-        if (!system_init){
-            system_init = true;
-            screen_height = videoHeight;
-            screen_width = videoWidth;
+        // Flycast renders its own interface, and OpenEmu brings one of its own.
+        gui_state = GuiState::Closed;
+
+        try {
+            emu.loadGame([romPath fileSystemRepresentation]);
+            emu.start();
+        } catch (const std::exception &e) {
+            NSLog(@"Flycast: unable to start %@: %s", romPath, e.what());
+            return;
         }
-        
-        if ([self needsDoubleBufferedFBO])
-           [self.renderDelegate presentDoubleBufferedFBO];
-        else
-           [self.renderDelegate presentationFramebuffer];
-                   
-        rend_single_frame(true);
-        
-        calcFPS();
+        gameStarted = YES;
+    }
+
+    try {
+        // Renders into the framebuffer OpenEmu bound for this frame and returns
+        // NO when the game is not running.
+        if (emu.render())
+            [self.renderDelegate presentDoubleBufferedFBO];
+    } catch (const std::exception &e) {
+        NSLog(@"Flycast: frame failed: %s", e.what());
+        return;
     }
 }
 
 # pragma mark - Video
-void os_SetWindowText(const char * text) {
-    puts(text);
-}
 
+// os_CreateWindow() and os_DestroyWindow() do nothing without SDL or X11, so
+// the ones in oslib are all this core needs. Pumps Flycast's event queue.
 void os_DoEvents() {
-}
-
-void os_CreateWindow() {
-}
-
-void* libPvr_GetRenderTarget() {
-    return 0;
-}
-
-void* libPvr_GetRenderSurface() {
-    return 0;
-}
-
-bool gl_init(void*, void*) {
-    return true;
-}
-
-void gl_term() {}
-
-double emuFrameInterval = 59.94;
-
-void calcFPS(){
-    const int spg_clks[4] = { 26944080, 13458568, 13462800, 26944080 };
-    u32 pixel_clock = spg_clks[(SPG_CONTROL.full >> 6) & 3];
-    
-    switch (pixel_clock)
-    {
-        case 26944080:
-            emuFrameInterval = 60.00;
-            //info->timing.fps = 60.00; /* (VGA  480 @ 60.00) */
-            break;
-        case 26917135:
-            emuFrameInterval = 59.94;
-            //info->timing.fps = 59.94; /* (NTSC 480 @ 59.94) */
-            break;
-        case 13462800:
-            emuFrameInterval = 50.00;
-            // info->timing.fps = 50.00; /* (PAL 240  @ 50.00) */
-            break;
-        case 13458568:
-            emuFrameInterval = 59.94;
-            // info->timing.fps = 59.94; /* (NTSC 240 @ 59.94) */
-            break;
-        case 25925600:
-            emuFrameInterval = 50.00;
-            //info->timing.fps = 50.00; /* (PAL 480  @ 50.00) */
-            break;
-    }
 }
 
 - (OEGameCoreRendering)gameCoreRendering
@@ -316,7 +235,7 @@ void calcFPS(){
 
 - (NSTimeInterval)frameInterval
 {
-    return emuFrameInterval;
+    return oe_frame_interval();
 }
 
 # pragma mark - Audio
@@ -337,23 +256,19 @@ void calcFPS(){
     @autoreleasepool
     {
         //Wait here until we get the signal for full initialization
-        while (!system_init)
+        while (!gameStarted)
             usleep (10000);
-        
+
         dc_SetStateName(autoLoadStatefileName.fileSystemRepresentation);
-        dc_loadstate();
-        
-        dc_resume();
+        dc_loadstate(0);
     }
 }
 
 - (void)saveStateToFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
 {
-    if (has_init) {
+    if (gameStarted) {
         dc_SetStateName(fileName.fileSystemRepresentation);
-        dc_savestate();
-        
-        dc_resume();
+        dc_savestate(0);
 
         block(true, nil);
     } else {
@@ -363,45 +278,29 @@ void calcFPS(){
 
 - (void)loadStateFromFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
 {
-    if (!has_init) {
+    if (!gameStarted) {
         //Start a separate thread to load
         autoLoadStatefileName = fileName;
         [NSThread detachNewThreadSelector:@selector(autoloadWaitThread:) toTarget:self withObject:nil];
     } else {
         dc_SetStateName(fileName.fileSystemRepresentation);
-        dc_loadstate();
-        dc_resume();
+        // Flycast's own load state hotkey stops and restarts the emulator
+        // around dc_loadstate. Loading while it is running left the SH4
+        // recompiler with stale blocks and tripped a verify in bm_AddBlock.
+        try {
+            emu.stop();
+            dc_loadstate(0);
+            emu.start();
+        } catch (const std::exception &e) {
+            NSLog(@"Flycast: unable to load state: %s", e.what());
+            block(false, [NSError errorWithDomain:OEGameCoreErrorDomain code:OEGameCoreCouldNotLoadStateError userInfo:nil]);
+            return;
+        }
     }
     block(true, nil);
 }
 
 # pragma mark - Input
-
-void os_SetupInput()
-{
-    // Create contollers, but only put vmu on the first controller
-#if DC_PLATFORM == DC_PLATFORM_DREAMCAST
-   for (int i = 0; i < DC_Contollers; i++)
-    {
-        config::MapleMainDevices[i] = MDT_SegaController;
-        config::MapleExpansionDevices[i][0] = i == 0 ? MDT_SegaVMU : MDT_None;
-        config::MapleExpansionDevices[i][1] = i == 0 ? MDT_SegaVMU : MDT_None;
-    }
-    
-    mcfg_CreateDevices();
-#endif
-}
-
-void UpdateInputState() {}
-
-void UpdateVibration(u32 port, u32 value) {}
-
-int get_mic_data(u8* buffer) { return 0; }
-int push_vmu_screen(u8* buffer) { return 0; }
-
-extern u16 kcode[4] ; //= { 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF };
-extern s8 joyx[4],joyy[4];
-extern u8 rt[4],lt[4];
 
 enum DCPad
 {
@@ -421,14 +320,10 @@ enum DCPad
     DPad2_Down	= 1<<13,
     DPad2_Left	= 1<<14,
     DPad2_Right	= 1<<15,
-    
-    Axis_LT= 0x10000,
-    Axis_RT= 0x10001,
-    Axis_X= 0x20000,
-    Axis_Y= 0x20001,
 };
 
-void handle_key(int dckey, int state, int player)
+// Flycast reads the gamepad state from these arrays, see ggpo::getInput().
+static void handle_key(u32 dckey, int state, int player)
 {
     if (state)
         kcode[player] &= ~dckey;
@@ -439,28 +334,28 @@ void handle_key(int dckey, int state, int player)
 - (oneway void)didMoveDCJoystickDirection:(OEDCButton)button withValue:(CGFloat)value forPlayer:(NSUInteger)player
 {
     if (player > DC_Contollers) return;
-    
+
     player -= 1;
-    
+
     switch (button)
     {
         case OEDCAnalogUp:
-            joyy[player] = value * INT8_MIN;
+            joyy[player] = (s16)(-32767 * value);
             break;
         case OEDCAnalogDown:
-            joyy[player] = value * INT8_MAX;
+            joyy[player] = (s16)(32767 * value);
             break;
         case OEDCAnalogLeft:
-            joyx[player] = value * INT8_MIN;
+            joyx[player] = (s16)(-32767 * value);
             break;
         case OEDCAnalogRight:
-            joyx[player] = value * INT8_MAX;
+            joyx[player] = (s16)(32767 * value);
             break;
         case OEDCAnalogL:
-            lt[player] = value ? 255 : 0;
+            lt[player] = value ? 0xFFFF : 0;
             break;
         case OEDCAnalogR:
-            rt[player] = value ? 255 : 0;
+            rt[player] = value ? 0xFFFF : 0;
             break;
         default:
             break;
@@ -470,9 +365,9 @@ void handle_key(int dckey, int state, int player)
 -(oneway void)didPushDCButton:(OEDCButton)button forPlayer:(NSUInteger)player
 {
     if (player > DC_Contollers) return;
-    
+
     player -= 1;
-    
+
     switch (button) {
         case OEDCButtonUp:
             handle_key(DPad_Up, 1, (int)player);
@@ -509,9 +404,9 @@ void handle_key(int dckey, int state, int player)
 - (oneway void)didReleaseDCButton:(OEDCButton)button forPlayer:(NSUInteger)player
 {
     if (player > DC_Contollers) return;
-    
+
     player -= 1;
-    
+
     // FIXME: Dpad up/down seems to get set and released on the same frame, making it not do anything.
     // Need to ensure actions last across a frame?
     switch (button) {
@@ -547,13 +442,33 @@ void handle_key(int dckey, int state, int player)
     }
 }
 
+# pragma mark - Platform services
 
-std::string os_Locale(){
-    return [[[NSLocale preferredLanguages] objectAtIndex:0] UTF8String];
+// Flycast normalizes the file names it lists so that they can be compared;
+// macOS hands out decomposed ones.
+std::string os_PrecomposedString(std::string string){
+    std::string result;
+    @autoreleasepool {
+        NSString *text = [NSString stringWithUTF8String:string.c_str()];
+        result = [[text precomposedStringWithCanonicalMapping] UTF8String];
+    }
+    return result;
 }
 
-std::string os_PrecomposedString(std::string string){
-    return [[[NSString stringWithUTF8String:string.c_str()] precomposedStringWithCanonicalMapping] UTF8String];
+void os_SetThreadName(const char *name) {
+    // Named threads help in samples; Flycast names its emulation thread.
+    @autoreleasepool {
+        [[NSThread currentThread] setName:[NSString stringWithUTF8String:name]];
+    }
+}
+
+void os_RunInstance(int argc, const char *argv[]) {
+}
+
+void os_notify(const char *msg, int durationMs, const char *details) {
+    NSLog(@"Flycast: %s%s%s", msg,
+          details != nullptr ? " - " : "",
+          details != nullptr ? details : "");
 }
 
 @end
