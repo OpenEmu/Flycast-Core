@@ -284,7 +284,18 @@ void os_DoEvents() {
         [NSThread detachNewThreadSelector:@selector(autoloadWaitThread:) toTarget:self withObject:nil];
     } else {
         dc_SetStateName(fileName.fileSystemRepresentation);
-        dc_loadstate(0);
+        // Flycast's own load state hotkey stops and restarts the emulator
+        // around dc_loadstate. Loading while it is running left the SH4
+        // recompiler with stale blocks and tripped a verify in bm_AddBlock.
+        try {
+            emu.stop();
+            dc_loadstate(0);
+            emu.start();
+        } catch (const std::exception &e) {
+            NSLog(@"Flycast: unable to load state: %s", e.what());
+            block(false, [NSError errorWithDomain:OEGameCoreErrorDomain code:OEGameCoreCouldNotLoadStateError userInfo:nil]);
+            return;
+        }
     }
     block(true, nil);
 }
